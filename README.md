@@ -16,6 +16,7 @@ You may need to log out and back into your web browser as the preferred Google a
 #### Twitter developer account
 
 Please visit:
+
 - [Twitter developer signup](https://developer.twitter.com/en/apply-for-access)
 
 ### Install R packages
