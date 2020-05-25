@@ -1,4 +1,4 @@
-# ucsb-meds-teaching-demo
+# meds-demo
 Teaching demonstration for UCSB Masters in Environmental Data Science
 
 ## Setup
