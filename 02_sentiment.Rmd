@@ -4,6 +4,14 @@
 knitr::opts_chunk$set(echo = T, message = F, warning = F)
 ```
 
+## STATUS: NOT READY {-}
+
+Sorry, this teaching module is not ready for students to run through just yet. I experienced a couple issues:
+
+1. The free Twitter developer API access only goes back 1 week. I upgraded to Premium for the Full Archive search going back to Twitter beginnings in 2006, but couldn't get the [`rtweet::search_fullarchive()`](https://rtweet.info/reference/search_fullarchive.html) to return any results. I finally got a week's worth of results with a more manual approach,  [_tweet-premium.R](https://github.com/bbest/meds-demo/blob/master/_tweet-premium.R), but then became time constrained to get the rest.
+
+1. I wanted to use an existing trained model, i.e. "transfer learning", to improve accuracy and not get into the weeds of convolutional neural net model design, but had trouble getting [tfhub](https://tensorflow.rstudio.com/guide/tfhub/intro/) to work.
+
 ## Objectives {- .objectives}
 
 ### Question {-}
