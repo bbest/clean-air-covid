@@ -161,21 +161,21 @@ mean(na.omit(tbl$score))
 nrow(tbl)
 ```
 
-## Test dataset
+## Twitter test dataset
 
 [For Academics - Sentiment140 - A Twitter Sentiment Analysis Tool](http://help.sentiment140.com/for-students)
 
 ```{r}
-test_csv <- here("data/sentiment140_testdata.manual.2009.06.14.csv")
-test <- read_csv(
-  test_csv, col_names = c(
+s140_csv <- here("data/sentiment140_testdata.manual.2009.06.14.csv")
+s140 <- read_csv(
+  s140_csv, col_names = c(
     "polarity", "status_id", "created_at", "query", "screen_name", "text")) %>% 
   mutate(
     # convert negative 0 -> -1, neutral 2 -> 0, positive 4 -> 1  
     polarity = recode(polarity, `0` = -1, `2` = 0, `4` = 1))
 
 # clean out non-ascii, twitter handles, and urls
-test <- test %>% 
+s140 <- s140 %>% 
   mutate(
     text_clean = text %>% 
       str_replace_all("[^[:ascii:]]", "_") %>% 
@@ -184,7 +184,7 @@ test <- test %>%
       str_replace_all("http[^ ]+", "_url_"))
 
 # tweets to words
-words <- test %>% 
+words <- s140 %>% 
   select(status_id, created_at, screen_name, text_clean) %>% 
   unnest_tokens(output = word, input = text_clean, token = "words") %>% 
   anti_join(stop_words, by = "word") %>% 
@@ -192,12 +192,12 @@ words <- test %>%
   left_join(
     tribble(
       ~sentiment, ~score,
-      "positive", 1,
+      "positive",  1,
       "negative", -1),
     by = "sentiment")
 
 # tally score per tweet
-test <- test %>% 
+s140 <- s140 %>% 
   left_join(
     words %>% 
       group_by(status_id) %>% 
@@ -205,9 +205,20 @@ test <- test %>%
         score = mean(score, na.rm = T)),
     by = "status_id")
 
-hist(test$score)
-nrow(test)
-mean(na.omit(test$score))
+hist(s140$score)
+nrow(s140)
+mean(na.omit(s140$score))
+
+# performance
+s140 <- s140 %>% 
+  mutate(
+    accurate_dict = case_when(
+      polarity == -1 & score < 0 ~ T,
+      polarity ==  0 & score == 0 ~ T,
+      polarity ==  1 & score > 0 ~ T,
+      T ~ F))
+select(s140, polarity, score, accurate_dict)
+sum(s140$accurate_dict / nrow(s140))
 ```
 
 ## Introducing TensorFlow
@@ -224,14 +235,18 @@ tfds::install_tfds()
 reticulate::py_config()
 ```
 
-## text classification
+### Text classification
 
 [Text Classification](https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_basic_text_classification/)
 
 The dataset was downloaded from [Movie Reviews | Kaggle]( https://www.kaggle.com/nltkdata/movie-review#movie_review.csv).
 
 ```{r}
-df <- read_csv(here("data/movie_review.csv"))
+#df <- read_csv(here("data/movie_review.csv"))
+df <- s140 %>%
+  mutate(
+    # convert negative -1 -> neg, neutral 0 -> neu, positive 1 -> pos
+    tag = recode(polarity, `-1` = "neg", `0` = "neu", `1` = "pos"))
 df %>% count(tag)
 df$text[1]
 
@@ -241,7 +256,8 @@ training    <- df[training_id,]
 testing     <- df[-training_id,]
 
 # distribution of number of words in each review?
-df$text %>% 
+#df$text %>% 
+df$text_clean %>% 
   strsplit(" ") %>% 
   sapply(length) %>% 
   summary()
@@ -254,7 +270,8 @@ text_vectorization <- layer_text_vectorization(
   output_sequence_length = max_length,)
 
 text_vectorization %>% 
-  adapt(df$text)
+  #adapt(df$text)
+  adapt(df$text_clean)
 
 # TODO see https://github.com/tensorflow/tensorflow/pull/34529
 get_vocabulary(text_vectorization)
@@ -294,6 +311,8 @@ results
 
 # graph accuracy and loss over iterations
 plot(history)
+
+results
 ```
 
 ### not working on Ben's laptop: trained model on image classification
