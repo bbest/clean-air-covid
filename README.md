@@ -19,14 +19,5 @@ Please visit:
 
 - [Twitter developer signup](https://developer.twitter.com/en/apply-for-access)
 
-### Install R packages
 
-```r
-# use librarian to load libraries, installing if needed
-if (!require("librarian"))
-  install.packages("librarian")
-library("librarian")
-
-shelf("r-spatial/rgee")
-```
 

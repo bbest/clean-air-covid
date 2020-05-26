@@ -1,0 +1,76 @@
+# Setup {-}
+
+## Install software
+
+This workshop will require the following software installed on your machine:
+
+- [R](http://cran.cnr.berkeley.edu/)
+- [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+
+Please download the appropriate stable release for your operating system.
+
+## Launch RStudio
+
+RStudio is an integrated development environment (IDE) for editing text in the code editor, running commands in the R console, viewing defined objects in the workspace and past commands in the history, and viewing plots, files and help. Here's a layout of the panes in RStudio, each of which can have several tabs for alternate functionality:
+
+![](images/rstudio.png)
+
+Check out the Help > Cheatsheets > [RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
+
+## Fork and Clone the Github Repository
+
+Please visit https://github.com/bbest/meds-demo, signed into Github. Then  into your own writable user space.
+
+Here is the Github repository of the source files for this demonstration:
+
+https://github.com/bbest/meds-demo
+
+You are encouraged to [fork the repo in Github](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [clone it in RStudio](https://happygitwithr.com/rstudio-git-github.html#clone-the-new-github-repository-to-your-computer-via-rstudio).
+
+Then you can follow along in RStudio by evaluating the chunks of R code, while referencing the website:
+
+http://benbestphd.com/meds-demo
+
+
+## Install R Packages
+
+Here's a bit of code to install packages that we'll use throughout the workshop. Please copy and paste this code into your console.
+
+```{r, message=F, warning=F}
+# use librarian to load libraries, installing if needed
+if (!require("librarian")) install.packages("librarian")
+library("librarian")
+
+# load packages
+pkgs <- c(
+  # general
+  "tidyverse","jsonlite","glue","here","units",
+
+  # satellite
+  "sf",
+  
+  # sentiment
+  "rtweet","tidytext")
+shelf(pkgs)
+
+# report on versions of software & packages
+sessionInfo()
+```
+
+## Create Rmarkdown file
+
+Rmarkdown is a dynamic document format that allows you to knit chunks of R code with formatted text (aka markdown). We recommend that you use this format for keeping a reproducible research document as you work through the lessons To get started, File > New File > Rmarkdown... and go with default HTML document and give any title you like (default "Untitled" or "test" or "First Rmd" is fine).
+
+Check out the Help > Markdown Quick Reference and Help > Cheatsheets > [R Markdown Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf).
+
+Here's a 1 minute video on the awesomeness of Rmarkdown:
+
+```{r, echo=F}
+vembedr::embed_url("https://vimeo.com/178485416")
+```
+
+
+
+
+
+

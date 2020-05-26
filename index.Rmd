@@ -1,0 +1,65 @@
+--- 
+title: "Clean Air in the Time of COVID"
+subtitle: "Use Cases for Google Earth Engine & Sentiment Analysis"
+author: "Ben Best, PhD"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [style/zotero_meds-demo.bib, style/packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: bbest/meds-demo
+description: "These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB."
+---
+
+```{r include=F, eval=F}
+# create bibliography database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'style/packages.bib')
+```
+
+
+
+```{r include=F}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview {-}
+
+These materials are for a 45 minute teaching demonstration on 2020-05-26 oriented towards students in the new Masters in Environmental Data Science at UCSB.
+
+## Motivation {- .objectives}
+
+This is an exciting time for the emerging field of Environmental Data Science. Environmental problems are increasingly complex and require advanced technical skills to translate the ever expanding flow of data into actionable insights.
+
+### Technologies {-}
+
+The two specific technologies featured in this teaching demonstration highlight some of the most promising aspects of truly :
+
+- **Google Earth Engine** leverages the massive storage and computational capabilities of the Google Cloud to analyze petabytes of the publicly available satellite data. For instance, global climatologies averaging across 40 years of temperature can be calculated and mapped in seconds. This is a truly _big data_ platform!
+
+- **TensorFlow** is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of _convolutional neural networks_, which represent a layering of nodes to enable complex pattern matching. These _deep learning_ models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles and respond to your beck and call through Alexa's voice commands.
+
+### Motivating Use Case {-}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">For the first time in decades, Mount Everest was visible from Kathmandu due to improved air quality.</p>
+<p>
+<a href="https://t.co/n4kLw1OwcW"><img src="https://pbs.twimg.com/media/EYjPQBUXgAAbZwW?format=jpg&name=thumb"/></a>
+</p>
+&mdash; Tom Patterson (\@MtnMapper) <a href="https://twitter.com/MtnMapper/status/1263487780799184897?ref_src=twsrc%5Etfw">May 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The positive effect of the Lockdown in India’s environment can be seen in New Delhi.<br>This picture depicts the air quality of New Delhi before &amp; after Lockdown.<br>Source - <a href="https://t.co/VoG0UbpFzE">https://t.co/VoG0UbpFzE</a></p>
+<p>
+<a href="https://t.co/FKlz93coJr"><img src="https://pbs.twimg.com/media/EWRq2NHX0AAuhMY?format=png&name=thumb"/></a>
+</p>
+&mdash; GurumaujSatsangi (\@GurumaujS) <a href="https://twitter.com/GurumaujS/status/1253244126239379457?ref_src=twsrc%5Etfw">April 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+## Prerequisites {- .prereq}
+
+See the Setup for required software. For this demonstration to make the most sense, it's preferable that you're familiar with:
+
+- **R**
+- **GIS**

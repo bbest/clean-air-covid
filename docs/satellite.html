@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 1 Satellite | Clean Air in the Time of COVID</title>
+  <meta name="description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 1 Satellite | Clean Air in the Time of COVID" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  <meta name="github-repo" content="bbest/meds-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 1 Satellite | Clean Air in the Time of COVID" />
+  
+  <meta name="twitter:description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  
+
+<meta name="author" content="Ben Best, PhD" />
+
+
+<meta name="date" content="2020-05-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="sentiment.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R3 Workshop</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#technologies"><i class="fa fa-check"></i>Technologies</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivating-use-case"><i class="fa fa-check"></i>Motivating Use Case</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html#install-software"><i class="fa fa-check"></i><b>0.1</b> Install software</a></li>
+<li class="chapter" data-level="0.2" data-path="setup.html"><a href="setup.html#launch-rstudio"><i class="fa fa-check"></i><b>0.2</b> Launch RStudio</a></li>
+<li class="chapter" data-level="0.3" data-path="setup.html"><a href="setup.html#fork-and-clone-the-github-repository"><i class="fa fa-check"></i><b>0.3</b> Fork and Clone the Github Repository</a></li>
+<li class="chapter" data-level="0.4" data-path="setup.html"><a href="setup.html#install-r-packages"><i class="fa fa-check"></i><b>0.4</b> Install R Packages</a></li>
+<li class="chapter" data-level="0.5" data-path="setup.html"><a href="setup.html#create-rmarkdown-file"><i class="fa fa-check"></i><b>0.5</b> Create Rmarkdown file</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="satellite.html"><a href="satellite.html"><i class="fa fa-check"></i><b>1</b> Satellite</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#objectives"><i class="fa fa-check"></i>Objectives</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#question"><i class="fa fa-check"></i>Question</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#study-area-delhi-india"><i class="fa fa-check"></i>Study area: Delhi, India</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#learning-outcomes"><i class="fa fa-check"></i>Learning outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="1.1" data-path="satellite.html"><a href="satellite.html#get-city-boundary"><i class="fa fa-check"></i><b>1.1</b> Get city boundary</a></li>
+<li class="chapter" data-level="1.2" data-path="satellite.html"><a href="satellite.html#browse-datasets-tag-no2"><i class="fa fa-check"></i><b>1.2</b> Browse datasets, tag no2</a></li>
+<li class="chapter" data-level="1.3" data-path="satellite.html"><a href="satellite.html#view-dataset-info"><i class="fa fa-check"></i><b>1.3</b> View dataset info</a></li>
+<li class="chapter" data-level="1.4" data-path="satellite.html"><a href="satellite.html#questions"><i class="fa fa-check"></i><b>1.4</b> Questions</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="satellite.html"><a href="satellite.html#answers"><i class="fa fa-check"></i><b>1.4.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="satellite.html"><a href="satellite.html#launch-code-editor-with-dataset"><i class="fa fa-check"></i><b>1.5</b> Launch Code Editor with dataset</a></li>
+<li class="chapter" data-level="1.6" data-path="satellite.html"><a href="satellite.html#run-the-initial-dataset-script"><i class="fa fa-check"></i><b>1.6</b> Run the initial dataset script</a></li>
+<li class="chapter" data-level="1.7" data-path="satellite.html"><a href="satellite.html#modify-the-script-so-satellite-layer-is-semi-transparent"><i class="fa fa-check"></i><b>1.7</b> Modify the script so satellite layer is semi-transparent</a></li>
+<li class="chapter" data-level="1.8" data-path="satellite.html"><a href="satellite.html#add-city-polygon-asset"><i class="fa fa-check"></i><b>1.8</b> Add city polygon asset</a></li>
+<li class="chapter" data-level="1.9" data-path="satellite.html"><a href="satellite.html#add-to-city-to-map"><i class="fa fa-check"></i><b>1.9</b> Add to city to map</a></li>
+<li class="chapter" data-level="1.10" data-path="satellite.html"><a href="satellite.html#create-time-series-chart"><i class="fa fa-check"></i><b>1.10</b> Create time series chart</a></li>
+<li class="chapter" data-level="1.11" data-path="satellite.html"><a href="satellite.html#expand-dates-to-all-available"><i class="fa fa-check"></i><b>1.11</b> Expand dates to all available</a></li>
+<li class="chapter" data-level="1.12" data-path="satellite.html"><a href="satellite.html#download-csv"><i class="fa fa-check"></i><b>1.12</b> Download CSV</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#further-resources"><i class="fa fa-check"></i>Further Resources</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#google-earth-engine"><i class="fa fa-check"></i>Google Earth Engine</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sentiment.html"><a href="sentiment.html"><i class="fa fa-check"></i><b>2</b> Sentiment</a><ul>
+<li class="chapter" data-level="2.1" data-path="sentiment.html"><a href="sentiment.html#twitter-examples"><i class="fa fa-check"></i><b>2.1</b> Twitter Examples</a></li>
+<li class="chapter" data-level="2.2" data-path="sentiment.html"><a href="sentiment.html#authenticate-twitter"><i class="fa fa-check"></i><b>2.2</b> Authenticate Twitter</a></li>
+<li class="chapter" data-level="2.3" data-path="sentiment.html"><a href="sentiment.html#enable-google-geocoding"><i class="fa fa-check"></i><b>2.3</b> Enable Google Geocoding</a></li>
+<li class="chapter" data-level="2.4" data-path="sentiment.html"><a href="sentiment.html#city-osm-poly"><i class="fa fa-check"></i><b>2.4</b> city osm poly</a></li>
+<li class="chapter" data-level="2.5" data-path="sentiment.html"><a href="sentiment.html#openaq"><i class="fa fa-check"></i><b>2.5</b> openaq</a></li>
+<li class="chapter" data-level="2.6" data-path="sentiment.html"><a href="sentiment.html#aqicn.org"><i class="fa fa-check"></i><b>2.6</b> aqicn.org</a></li>
+<li class="chapter" data-level="2.7" data-path="sentiment.html"><a href="sentiment.html#tensorflow"><i class="fa fa-check"></i><b>2.7</b> TensorFlow</a></li>
+<li class="chapter" data-level="2.8" data-path="sentiment.html"><a href="sentiment.html#tfhub"><i class="fa fa-check"></i><b>2.8</b> tfhub</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Clean Air in the Time of COVID</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="satellite" class="section level1">
+<h1><span class="header-section-number">Lesson 1</span> Satellite</h1>
+<div id="objectives" class="section level2 unnumbered objectives">
+<h2>Objectives</h2>
+<div id="question" class="section level3 unnumbered">
+<h3>Question</h3>
+<ul>
+<li>How have emissions related to air quality changed since COVID-19 lockdowns were put in place?</li>
+</ul>
+</div>
+<div id="study-area-delhi-india" class="section level3 unnumbered">
+<h3>Study area: Delhi, India</h3>
+<ul>
+<li>We’ll use <strong>Delhi, India</strong> as our initial city study area. Prime Minister Modhi issued a nationwide lockdown on 24 March, 2020.</li>
+</ul>
+<p><strong>News</strong>:</p>
+<ul>
+<li><a href="https://www.cnn.com/2020/04/22/world/air-pollution-reduction-cities-coronavirus-intl-hnk/index.html">Air pollution falls by unprecedented levels in major global cities during coronavirus lockdowns - CNN</a></li>
+<li><a href="https://www.cnn.com/2020/04/23/india/india-air-pollution-coronavirus-nasa-intl/index.html">India: air pollution in the north has hit a 20-year low, NASA report says - CNN</a></li>
+<li><a href="https://smartairfilters.com/en/blog/delhi-pm25-air-pollution-decrease-coronavirus/">Fact Check: Is The COVID-19 Lockdown Decreasing Delhi Air Pollution? - Smart Air Filters</a></li>
+</ul>
+</div>
+<div id="learning-outcomes" class="section level3 unnumbered">
+<h3>Learning outcomes</h3>
+<ol style="list-style-type: decimal">
+<li>Browse Google Earth Engine’s data catalogue</li>
+<li>Map satellite imagery dataset layer</li>
+<li>Filter by date</li>
+<li>Average values over time</li>
+<li>Upload a polygon into assets</li>
+<li>Use polygon to extract values for study area</li>
+<li>Average values in space within the polygon</li>
+<li>Generate a time series chart for satellite data</li>
+<li>Download data as a text file (csv)</li>
+</ol>
+</div>
+</div>
+<div id="prerequisites-1" class="section level2 unnumbered prereq">
+<h2>Prerequisites</h2>
+<p>A <strong>Google Earth Engine account</strong> that is associated with a Google account, such as from Gmail, is required to log into <a href="https://code.earthengine.google.com" class="uri">https://code.earthengine.google.com</a>.</p>
+<p>If you need a GEE account, please visit <a href="https://signup.earthengine.google.com" class="uri">https://signup.earthengine.google.com</a>.</p>
+<p>You may need to log out and back into your web browser as the preferred Google account to request permissions. This approval process can take days to weeks unfortunately.</p>
+</div>
+<div id="get-city-boundary" class="section level2">
+<h2><span class="header-section-number">1.1</span> Get city boundary</h2>
+<p>The first step is to define our study area. I made a little R helper function <code>city2zip()</code> to:</p>
+<ol style="list-style-type: decimal">
+<li>Fetch the administrative boundary from the <a href="https://nominatim.org/release-docs/develop/api/Search/">Nominatim OpenStreetMap API</a> given a city name.</li>
+<li>Extract the polygon information, convert to shapefile and zip for upload into GEE.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;functions.R&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">city2zip</span>(<span class="st">&quot;Delhi, India&quot;</span>)</a></code></pre></div>
+<p>The function returns the paths to files generated. You will use this zip file to upload into GEE as an asset.</p>
+</div>
+<div id="browse-datasets-tag-no2" class="section level2">
+<h2><span class="header-section-number">1.2</span> Browse datasets, tag no2</h2>
+<p>Visit <a href="https://earthengine.google.com" class="uri">https://earthengine.google.com</a> &gt; Datasets (upper right). Be sure to explore the many datasets available here.</p>
+<p>Since we know we want Nitrogen Dioxide (NO<sub>2</sub>), click on Browse by tags and Filter by “no2”. You should see two datasets:</p>
+<div class="figure">
+<img src="images/gee_datasets-tag-no2.png" alt="Screenshot of GEE data catalog filtered by tag “no2” showing two datasets." />
+<p class="caption">Screenshot of GEE data catalog filtered by tag “no2” showing two datasets.</p>
+</div>
+</div>
+<div id="view-dataset-info" class="section level2">
+<h2><span class="header-section-number">1.3</span> View dataset info</h2>
+<p>Please click on “Sentinel-5P NRTI NO2: Near Real-Time Nitrogen Dioxide” to get the dataset view. Explore the metadata for this dataset.</p>
+</div>
+<div id="questions" class="section level2 challenge">
+<h2><span class="header-section-number">1.4</span> Questions</h2>
+<ol style="list-style-type: decimal">
+<li>How many years of data are available?</li>
+<li>How does this compare with the other “Offline” dataset?</li>
+<li>Which of the bands do we want to use that is closest to the surface?</li>
+<li>What are the units of the band “NO2_column_number_density”?</li>
+<li>What is its maximum value?</li>
+</ol>
+<div id="answers" class="section level3 solution">
+<h3><span class="header-section-number">1.4.1</span> Answers</h3>
+<ol style="list-style-type: decimal">
+<li>2018-07-10 - Present, so ~1.5 months shy of 2 years</li>
+<li>2018-06-28 - Present, so only ~ 0.5 month longer</li>
+<li>mol/m<sup>2</sup></li>
+<li>0.0096</li>
+</ol>
+</div>
+</div>
+<div id="launch-code-editor-with-dataset" class="section level2">
+<h2><span class="header-section-number">1.5</span> Launch Code Editor with dataset</h2>
+<p>Scroll to the bottom. You should see the following snippet of JavaScript code:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">var</span> collection <span class="op">=</span> <span class="va">ee</span>.<span class="at">ImageCollection</span>(<span class="st">&#39;COPERNICUS/S5P/NRTI/L3_NO2&#39;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  .<span class="at">select</span>(<span class="st">&#39;NO2_column_number_density&#39;</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  .<span class="at">filterDate</span>(<span class="st">&#39;2019-06-01&#39;</span><span class="op">,</span> <span class="st">&#39;2019-06-06&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">var</span> band_viz <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">max</span><span class="op">:</span> <span class="fl">0.0002</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">palette</span><span class="op">:</span> [<span class="st">&#39;black&#39;</span><span class="op">,</span> <span class="st">&#39;blue&#39;</span><span class="op">,</span> <span class="st">&#39;purple&#39;</span><span class="op">,</span> <span class="st">&#39;cyan&#39;</span><span class="op">,</span> <span class="st">&#39;green&#39;</span><span class="op">,</span> <span class="st">&#39;yellow&#39;</span><span class="op">,</span> <span class="st">&#39;red&#39;</span>]</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="op">};</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="va">Map</span>.<span class="at">addLayer</span>(<span class="va">collection</span>.<span class="at">mean</span>()<span class="op">,</span> band_viz<span class="op">,</span> <span class="st">&#39;S5P N02&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="va">Map</span>.<span class="at">setCenter</span>(<span class="fl">65.27</span><span class="op">,</span> <span class="fl">24.11</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">;</span></a></code></pre></div>
+<p>Click the button at the bottom to launch the Code Editor with this dataset loading JavaScript code:</p>
+<p><a class="btn btn-primary" style="background-color:#1a73e8;color:#fff"
+href="https://code.earthengine.google.com/?scriptPath=Examples:Datasets/COPERNICUS_S5P_NRTI_L3_NO2" role="button">Open in Code Editor</a></p>
+</div>
+<div id="run-the-initial-dataset-script" class="section level2">
+<h2><span class="header-section-number">1.6</span> Run the initial dataset script</h2>
+<p>You should now be seeing the Code Editor. Here are some labels for the user interface to orient yourself:</p>
+<div class="figure">
+<img src="https://geohackweek.github.io/GoogleEarthEngine/fig/02_codeeditor.png" alt="Credit: Google Earth Engine: Code Editor" />
+<p class="caption">Credit: <a href="https://geohackweek.github.io/GoogleEarthEngine/02-code-editor/">Google Earth Engine: Code Editor</a></p>
+</div>
+<p>Click <strong>Run</strong> to run the script. Voila! You should see tiles of the satellite data layer appear in the lower Map pane:</p>
+<p><img src="images/gee_run-init-dataset.png" /></p>
+<p>Be sure to try out the zoom (+/-) and pan (hand icon) to move around.</p>
+</div>
+<div id="modify-the-script-so-satellite-layer-is-semi-transparent" class="section level2">
+<h2><span class="header-section-number">1.7</span> Modify the script so satellite layer is semi-transparent</h2>
+<p>Decrease the “opacity” (Search for this word under Docs tab; see documentation for Map.addLayer then ee.data.getMapId) in and add the <code>opacity</code> parameter with a value of <code>0.5</code> to the <code>band_viz</code> definition like so (don’t forget the extra comma):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">var</span> band_viz <span class="op">=</span> <span class="op">{</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">min</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">max</span><span class="op">:</span> <span class="fl">0.0002</span><span class="op">,</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">palette</span><span class="op">:</span> [<span class="st">&#39;black&#39;</span><span class="op">,</span> <span class="st">&#39;blue&#39;</span><span class="op">,</span> <span class="st">&#39;purple&#39;</span><span class="op">,</span> <span class="st">&#39;cyan&#39;</span><span class="op">,</span> <span class="st">&#39;green&#39;</span><span class="op">,</span> <span class="st">&#39;yellow&#39;</span><span class="op">,</span> <span class="st">&#39;red&#39;</span>]<span class="op">,</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">opacity</span><span class="op">:</span> <span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="op">};</span></a></code></pre></div>
+<p>Save the file and Run. I am choosing to save this file as “no2” under the “meds-demo” repository in the Script manager pane (upper left).</p>
+</div>
+<div id="add-city-polygon-asset" class="section level2">
+<h2><span class="header-section-number">1.8</span> Add city polygon asset</h2>
+<p>Use the Asset Manager (Assets tab in upper left) to now add your study area by Uploading a <span style="color: white;background-color: red;">NEW</span> Shape file. Drag <code>city_Delhi.India.zip</code> in your file system to the <span style="color: white;background-color: red;">SELECT</span> button. Click <span style="color: white;background-color: rgb(33, 150, 243);">UPLOAD</span> to start upload.</p>
+<p>Now click the Tasks tab (upper right) to see that this process is initiated, but not yet complete (spinny gear on right). It should complete within a minute. You might need to refresh your browser for the asset to appear.</p>
+<p>Hover over the newly added asset city_Delhi-India in your Assets pane and click on the blue right arrow to import it into your script.</p>
+<p>For more on this topic, see <a href="https://developers.google.com/earth-engine/asset_manager">Managing Assets</a>.</p>
+</div>
+<div id="add-to-city-to-map" class="section level2">
+<h2><span class="header-section-number">1.9</span> Add to city to map</h2>
+<p>Notice how it brings in the asset as a default variable named <code>table</code>. I suggest changing the name of this variable to something friendlier like <code>city_ply</code>, short for city polygon.</p>
+<p>Now center the map on this polygon (vs <code>Map.setCenter(65.27, 24.11, 4);</code>) and add it as a layer to be drawn on the map:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="va">Map</span>.<span class="at">addLayer</span>(<span class="va">collection</span>.<span class="at">mean</span>()<span class="op">,</span> band_viz<span class="op">,</span> <span class="st">&#39;S5P N02&#39;</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="va">Map</span>.<span class="at">centerObject</span>(city_ply)<span class="op">;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="va">Map</span>.<span class="at">addLayer</span>(city_ply<span class="op">,</span> <span class="op">{</span><span class="dt">color</span><span class="op">:</span> <span class="st">&#39;black&#39;</span><span class="op">},</span> <span class="st">&#39;Delhi&#39;</span>)<span class="op">;</span></a></code></pre></div>
+<p>For more, see:</p>
+<ul>
+<li><a href="https://developers.google.com/earth-engine/geometry_visualization_info">Geometry Visualization and Information</a></li>
+</ul>
+</div>
+<div id="create-time-series-chart" class="section level2">
+<h2><span class="header-section-number">1.10</span> Create time series chart</h2>
+<p>Next let’s generate a <a href="https://developers.google.com/earth-engine/charts_image_series">Time Series Chart</a>, which is available as user interface (<code>ui</code>) that we can print (vs embedding in a whole user interface – for another day).</p>
+<p>Its two required parameters are for an image collection and a region (find parameters in the Docs). The third parameter is for the reducer, which is the function that reduces the many pixels into a single value. In our case we want to take the average so we’ll use the <code>ee.Reducer.mean()</code> function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="at">print</span>(<span class="va">ui</span>.<span class="va">Chart</span>.<span class="va">image</span>.<span class="at">series</span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  collection<span class="op">,</span> </a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  city_ply<span class="op">,</span> </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="va">ee</span>.<span class="va">Reducer</span>.<span class="at">mean</span>()))<span class="op">;</span></a></code></pre></div>
+<p>Save and Run. Yay! You should see a time series chart in the Console:</p>
+<p><img src="images/gee_ts-chart_1-week.png" /></p>
+</div>
+<div id="expand-dates-to-all-available" class="section level2">
+<h2><span class="header-section-number">1.11</span> Expand dates to all available</h2>
+<p>But that was only for the default week of ‘2019-06-01’ to ‘2019-06-06’ and we know this dataset is available for a longer period. Let’s update <code>.filterDate()</code> to use the entire range of available data in line 3:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb8-1" data-line-number="1">  .<span class="at">filterDate</span>(<span class="st">&#39;2018-07-10&#39;</span><span class="op">,</span> <span class="st">&#39;2020-05-26&#39;</span>)<span class="op">;</span></a></code></pre></div>
+<p>Save and Run again. It should take a bit longer to process, since it’s now extracting almost 2 years worth of data in the city polygon. Once the plot shows up in the Console again, click the upper right arrow to pop it into its own dedicated window.</p>
+<p><img src="images/gee_ts-chart_all-popout.png" /></p>
+</div>
+<div id="download-csv" class="section level2">
+<h2><span class="header-section-number">1.12</span> Download CSV</h2>
+<p>In the popped out window of the time series chart, download the comma-seperated value (CSV) text file by clicking the <span style="color: black;background-color: #F1F1F1;">Download CSV</span> button. I save my file into <code>data/no2_gee_Delhi-India.csv</code> of this Github repository.</p>
+</div>
+<div id="conclusions" class="section level2 unnumbered">
+<h2>Conclusions</h2>
+<p>It is similarly creating an average raster for the entire time domain of this dataset in the Map pane. Try zooming out, realizing that is happening globally. Now that’s big data! In a tiny amount of time, with minor effort.</p>
+</div>
+<div id="further-resources" class="section level2 unnumbered">
+<h2>Further Resources</h2>
+<div id="google-earth-engine" class="section level3 unnumbered">
+<h3>Google Earth Engine</h3>
+<ul>
+<li><a href="https://geohackweek.github.io/GoogleEarthEngine/">GEE Lessons - GeoHackWeek</a>: Software Carpentry style</li>
+<li><a href="https://r-spatial.github.io/rgee/">rgee</a>: R package for GEE; still in early development</li>
+<li><span class="citation">(Gorelick et al. <a href="#ref-gorelickGoogleEarthEngine2017a">2017</a>)</span></li>
+</ul>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-gorelickGoogleEarthEngine2017a">
+<p>Gorelick, Noel, Matt Hancher, Mike Dixon, Simon Ilyushchenko, David Thau, and Rebecca Moore. 2017. “Google Earth Engine: Planetary-Scale Geospatial Analysis for Everyone.” <em>Remote Sensing of Environment</em>, Big Remotely Sensed Data: Tools, applications and experiences, 202 (December): 18–27. <a href="https://doi.org/10.1016/j.rse.2017.06.031">https://doi.org/10.1016/j.rse.2017.06.031</a>.</p>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/lesson.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sentiment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ecoquants/r3-workshop/blob/master/01_satellite.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MEDS-demo.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
