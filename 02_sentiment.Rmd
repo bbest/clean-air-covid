@@ -8,9 +8,11 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ### Question {-}
 
-- How has sentiment around air quality and clean energy changed since air became cleaner? 
+How has sentiment around air quality and clean energy changed since air became cleaner? 
 
-### Motivation {-}
+**Background**. In anticipation of the 2008 Summer Olympics in Beijing the Chinese government imposed strict rules to clean up the air. The people got used to better air and now Beijing is consistently improved. Will this hiatus to bad air be temporary or incite a push towards cleaner energy. For a compelling summary, check out the podcast [The Natural Experiment - 99% Invisible](https://99percentinvisible.org/episode/the-natural-experiment/).
+
+### Technical Motivation {-}
 
 Sentiment can be evaluated as either positive or negative. This **binary classification** is the most basic response for **machine learning**, thus a good example for a lesson on machine learning. Text however can have many complicated forms, such as negating terms (eg "happy" vs "_**not**_ happy"), which makes it a good candidate for **deep learning**.
 
@@ -55,16 +57,15 @@ library("librarian")
 
 pkgs <- c(
   # utility
-  "here","glue","stringr","dplyr","readr",
+  "here","glue","stringr","dplyr","readr","ggplot2","purrr",
   # airquality
   #"ropensci/ropenaq",
   # spatial
   "sf",#"ggmap","mapview","leaflet",
   # text
-  "rtweet","tidytext" #,"textdata",
+  "rtweet","tidytext","textdata",
   # tensorflow
-  #"tensorflow","keras","tfhub","rstudio/tfds"
-  )
+  "tensorflow","keras","tfhub","rstudio/tfds","pins")
 shelf(pkgs)
 ```
 
@@ -102,8 +103,8 @@ if (!file.exists(now_rds)){
   saveRDS(tbl, now_rds)
 }
 
-#if (!file.exists(yr1_rds)){
-if (F){
+if (!file.exists(yr1_rds)){
+#if (F){
   tbl_yr1 <- search_fullarchive(
     env_name = "research",
     fromDate = "201905190000",
@@ -223,6 +224,80 @@ tfds::install_tfds()
 reticulate::py_config()
 ```
 
+## text classification
+
+[Text Classification](https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_basic_text_classification/)
+
+The dataset was downloaded from [Movie Reviews | Kaggle]( https://www.kaggle.com/nltkdata/movie-review#movie_review.csv).
+
+```{r}
+df <- read_csv(here("data/movie_review.csv"))
+df %>% count(tag)
+df$text[1]
+
+# split our dataset into training and testing
+training_id <- sample.int(nrow(df), size = nrow(df)*0.8)
+training    <- df[training_id,]
+testing     <- df[-training_id,]
+
+# distribution of number of words in each review?
+df$text %>% 
+  strsplit(" ") %>% 
+  sapply(length) %>% 
+  summary()
+
+# create padded arrays
+num_words <- 10000
+max_length <- 50
+text_vectorization <- layer_text_vectorization(
+  max_tokens = num_words, 
+  output_sequence_length = max_length,)
+
+text_vectorization %>% 
+  adapt(df$text)
+
+# TODO see https://github.com/tensorflow/tensorflow/pull/34529
+get_vocabulary(text_vectorization)
+
+text_vectorization(matrix(df$text[1], ncol = 1))
+
+input <- layer_input(shape = c(1), dtype = "string")
+
+output <- input %>% 
+  text_vectorization() %>% 
+  layer_embedding(input_dim = num_words + 1, output_dim = 16) %>%
+  layer_global_average_pooling_1d() %>%
+  layer_dense(units = 16, activation = "relu") %>%
+  layer_dropout(0.5) %>% 
+  layer_dense(units = 1, activation = "sigmoid")
+
+model <- keras_model(input, output)
+
+# configure the model to use an optimizer and a loss function
+model %>% compile(
+  optimizer = 'adam',
+  loss = 'binary_crossentropy',
+  metrics = list('accuracy'))
+
+# train the model
+history <- model %>% fit(
+  training$text,
+  as.numeric(training$tag == "pos"),
+  epochs = 10,
+  batch_size = 512,
+  validation_split = 0.2,
+  verbose=2)
+
+# evaluate the model
+results <- model %>% evaluate(testing$text, as.numeric(testing$tag == "pos"), verbose = 0)
+results
+
+# graph accuracy and loss over iterations
+plot(history)
+```
+
+### not working on Ben's laptop: trained model on image classification
+
 ```{r, eval = F}
 library(tfhub)
 library(keras)
@@ -248,7 +323,15 @@ There's a lot of Python and R communication that can get easily confused between
 Then per [rocker/tensorflow - Docker Hub](https://hub.docker.com/r/rocker/tensorflow) run the following to get a clean RStudio instance with all the TensorFlow and Python dependencies properly installed:
 
 ```bash
-docker run -e PASSWORD=mu -p 8787:8787 rocker/ml
+docker run -e PASSWORD=mu -p 8787:8787 --name ml4r rocker/ml 
+```
+
+Visit http://localhost:8787/ and enter username rstudio, password mu.
+
+Then in the Terminal of RStudio run:
+
+```
+git clone https://github.com/bbest/meds-demo
 ```
 
 ```{r, eval = F}

@@ -8,7 +8,9 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ### Question {-}
 
-- How have emissions related to air quality changed since COVID-19 lockdowns were put in place? 
+- How have emissions related to air quality changed since COVID-19 lockdowns were put in place?
+
+**Background**. Nitrogen dioxide (**NO~2~**) is produced from burning of fossil fuel, especialy from motor vehicles, and contributes to the formation of other air pollutants, including ozone, particulate mattter and acid rain.
 
 ### Study area: Delhi, India {-}
 

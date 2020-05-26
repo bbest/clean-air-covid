@@ -1,6 +1,6 @@
 --- 
 title: "Clean Air in the Time of COVID"
-subtitle: "Use Cases for Google Earth Engine & Sentiment Analysis"
+subtitle: "Use Cases for Satellite & Sentiment Analysis"
 author: "Ben Best, PhD"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

@@ -1,23 +1,15 @@
 # meds-demo
 Teaching demonstration for UCSB Masters in Environmental Data Science
 
-## Setup
+Please visit for more on background, prerequisites and setup:
 
-### Apply for accounts
+https://benbestphd.com/meds-demo
 
-#### Google Earth Engine (GEE) account
+## website
 
-Please visit:
+The website was genarated using [bookdown](https://bookdown.org).
 
-- [Google Earth Engine signup](https://signup.earthengine.google.com/#!/)
 
-You may need to log out and back into your web browser as the preferred Google account to request permissions. This approval process can take days to weeks unfortunately.
-
-#### Twitter developer account
-
-Please visit:
-
-- [Twitter developer signup](https://developer.twitter.com/en/apply-for-access)
 
 
 
