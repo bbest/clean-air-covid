@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  25 MAY 2020 22:23
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.4.16)  26 MAY 2020 04:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,172 +1259,166 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 [3] [4
 
-] [5] [6]
-File: images/rstudio.png Graphic file (type bmp)
-<images/rstudio.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[7
+] [5] [6] [7
 
 ]
+File: images/rstudio.png Graphic file (type bmp)
+<images/rstudio.png>
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.01236pt on input line 220.
+(Font)              scaled to size 7.01236pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 4.98074pt on input line 220.
+(Font)              scaled to size 4.98074pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00015pt on input line 220.
+(Font)              scaled to size 10.00015pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.01247pt on input line 220.
+(Font)              scaled to size 7.01247pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 4.9808pt on input line 220.
+(Font)              scaled to size 4.9808pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99985pt on input line 220.
+(Font)              scaled to size 9.99985pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.01224pt on input line 220.
+(Font)              scaled to size 7.01224pt on input line 249.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.98067pt on input line 220.
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 240.
+(Font)              scaled to size 4.98067pt on input line 249.
 [8]
-Overfull \hbox (96.0pt too wide) in paragraph at lines 299--299
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 269.
+
+Overfull \hbox (96.0pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ## BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resourc
 es/lib/libRblas.0.dylib[] 
  []
 
 
-Overfull \hbox (106.5pt too wide) in paragraph at lines 299--299
+Overfull \hbox (106.5pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ## LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resou
 rces/lib/libRlapack.dylib[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 299--299
+Overfull \hbox (12.0pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_U
 S.UTF-8[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 299--299
+Overfull \hbox (27.75pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ## [1] stats     graphics  grDevices utils     datasets  meth
 ods   base[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 299--299
+Overfull \hbox (6.75pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [1] tidytext_0.2.2  rtweet_0.7.0    sf_0.8-0        units
 _0.6-6[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 299--299
+Overfull \hbox (17.25pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [5] here_0.1        glue_1.4.1      jsonlite_1.6.1  forca
 ts_0.4.0[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 299--299
+Overfull \hbox (6.75pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [9] stringr_1.4.0   dplyr_0.8.5     purrr_0.3.4     readr
 _1.3.1[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 299--299
+Overfull \hbox (27.75pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ## [13] tidyr_1.1.0     tibble_3.0.1    ggplot2_3.3.0   tidyv
 erse_1.3.0[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 299--299
+Overfull \hbox (59.25pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [1] Rcpp_1.0.4.6       lubridate_1.7.8    lattice_0.20-38
     class_7.3-15[] 
  []
 
-
-Overfull \hbox (38.25pt too wide) in paragraph at lines 299--299
+[9]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [5] assertthat_0.2.1   rprojroot_1.3-2    digest_0.6.25  
     R6_2.4.1[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 299--299
+Overfull \hbox (64.5pt too wide) in paragraph at lines 327--327
 []\TU/lmtt/m/n/10 ##  [9] cellranger_1.1.0   backports_1.1.7    reprex_0.3.0   
     evaluate_0.14[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [13] e1071_1.7-3        blogdown_0.17      httr_1.4.1     
-    pillar_1.4.4[] 
+Overfull \hbox (54.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [13] e1071_1.7-3        httr_1.4.1         pillar_1.4.4   
+    rlang_0.4.6[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [17] rlang_0.4.6        readxl_1.3.1       rstudioapi_0.11
-    Matrix_1.2-18[] 
+Overfull \hbox (64.5pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [17] readxl_1.3.1       rstudioapi_0.11    Matrix_1.2-18  
+    rmarkdown_2.1[] 
  []
 
 
-Overfull \hbox (85.5pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [21] rmarkdown_2.1      munsell_0.5.0      broom_0.5.5    
-    janeaustenr_0.1.5[] 
+Overfull \hbox (69.75pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [21] munsell_0.5.0      broom_0.5.5        janeaustenr_0.1
+.5  compiler_3.5.2[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [25] compiler_3.5.2     modelr_0.1.5       xfun_0.14      
-    pkgconfig_2.0.3[] 
+Overfull \hbox (64.5pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [25] modelr_0.1.5       xfun_0.14          pkgconfig_2.0.3
+    vembedr_0.1.3[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [29] vembedr_0.1.3      htmltools_0.4.0    tidyselect_1.1.
-0   bookdown_0.16[] 
+Overfull \hbox (54.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [29] htmltools_0.4.0    tidyselect_1.1.0   bookdown_0.16  
+    fansi_0.4.1[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [33] fansi_0.4.1        crayon_1.3.4       dbplyr_1.4.2   
-    withr_2.2.0[] 
+Overfull \hbox (75.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [33] crayon_1.3.4       dbplyr_1.4.2       withr_2.2.0    
+    SnowballC_0.6.0[] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[9]
-Overfull \hbox (59.25pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [37] SnowballC_0.6.0    grid_3.5.2         nlme_3.1-142   
-    gtable_0.3.0[] 
+Overfull \hbox (75.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [37] grid_3.5.2         nlme_3.1-142       gtable_0.3.0   
+    lifecycle_0.2.0[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [41] lifecycle_0.2.0    DBI_1.1.0          magrittr_1.5   
-    tokenizers_0.2.1[] 
+Overfull \hbox (59.25pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [41] DBI_1.1.0          magrittr_1.5       tokenizers_0.2.
+1   scales_1.1.1[] 
  []
 
 
-Overfull \hbox (64.5pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [45] scales_1.1.1       KernSmooth_2.23-16 cli_2.0.2      
-    stringi_1.4.6[] 
+Overfull \hbox (38.25pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [45] KernSmooth_2.23-16 cli_2.0.2          stringi_1.4.6  
+    fs_1.3.1[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [49] fs_1.3.1           xml2_1.2.2         ellipsis_0.3.1 
-    generics_0.0.2[] 
+Overfull \hbox (54.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [49] xml2_1.2.2         ellipsis_0.3.1     generics_0.0.2 
+    vctrs_0.3.0[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [53] vctrs_0.3.0        tools_3.5.2        hms_0.5.3      
-    yaml_2.2.1[] 
+Overfull \hbox (80.25pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [53] tools_3.5.2        hms_0.5.3          yaml_2.2.1     
+    colorspace_1.4-1[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## [57] colorspace_1.4-1   classInt_0.4-3     rvest_0.3.5    
-    knitr_1.28[] 
+Overfull \hbox (54.0pt too wide) in paragraph at lines 327--327
+[]\TU/lmtt/m/n/10 ## [57] classInt_0.4-3     rvest_0.3.5        knitr_1.28     
+    haven_2.2.0[] 
  []
 
 [10]
@@ -1434,24 +1428,90 @@ Chapter 1.
 ]
 File: images/gee_datasets-tag-no2.png Graphic file (type bmp)
 <images/gee_datasets-tag-no2.png>
-[12] [13]
+[12] [13] [14]
+File: images/gee_run-init-dataset.png Graphic file (type bmp)
+<images/gee_run-init-dataset.png>
+[15]
+File: images/gee_ts-chart_1-week.png Graphic file (type bmp)
+<images/gee_ts-chart_1-week.png>
+[16]
+File: images/gee_ts-chart_all-popout.png Graphic file (type bmp)
+<images/gee_ts-chart_all-popout.png>
 
-LaTeX Warning: File `https://geohackweek.github.io/GoogleEarthEngine/fig/02_cod
-eeditor.png' not found on input line 495.
+Underfull \vbox (badness 1400) has occurred while \output is active []
 
-! Unable to load picture or PDF file 'https://geohackweek.github.io/GoogleEarth
-Engine/fig/02_codeeditor.png'.
-<to be read again> 
-                   }
-l.495 .../GoogleEarthEngine/fig/02_codeeditor.png}
-                                                   
+[17]
+
+Package natbib Warning: Citation `gorelickGoogleEarthEngine2017a' on page 18 un
+defined on input line 649.
+
+[18]
+Chapter 2.
+[19
+
+] [20]
+
+Package natbib Warning: Citation `gurajalaUnderstandingPublicResponse2019' on p
+age 21 undefined on input line 767.
+
+
+Underfull \hbox (badness 2781) in paragraph at lines 767--768
+\TU/lmr/m/n/10 #HAZE #OZONE #PARTICLES #PARTICULATES #PM25 #PM2.5
+ []
+
+[21] [22]
+File: MEDS-demo_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pd
+f)
+<use MEDS-demo_files/figure-latex/unnamed-chunk-10-1.pdf>
+[23]
+File: MEDS-demo_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pd
+f)
+<use MEDS-demo_files/figure-latex/unnamed-chunk-11-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[24]
+Overfull \vbox (1.08498pt too high) detected at line 984
+ []
+
+[25]
+Overfull \hbox (621.0pt too wide) in paragraph at lines 991--991
+[]  \TU/lmtt/m/n/10 OSError: SavedModel file does not exist at: /var/folders/2r
+/grqvdjfn04361tzk8mh60st40000gn/T/tfhub_modules/426589ad685896ab7954855255a52db
+3442cb38d/{saved_model.pbtxt|saved_model.pb}[] 
+ []
+
+No file MEDS-demo.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1016.
+[26]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1016.
+(./MEDS-demo.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1016.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1016.
+
+
+Package rerunfilecheck Warning: File `MEDS-demo.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `MEDS-demo.out':
+(rerunfilecheck)             Before: 
+(rerunfilecheck)             After:  E534272FC132D71DC1541BB2FDC4DF7E.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1016.
+ ) 
 Here is how much of TeX's memory you used:
- 25709 strings out of 492970
- 470173 string characters out of 6133938
- 683969 words of memory out of 5000000
- 29453 multiletter control sequences out of 15000+600000
- 536625 words of font info for 77 fonts, out of 8000000 for 9000
+ 25758 strings out of 492970
+ 471900 string characters out of 6133938
+ 684969 words of memory out of 5000000
+ 29519 multiletter control sequences out of 15000+600000
+ 536633 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  58i,6n,117p,10418b,542s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MEDS-demo.pdf (13 pages).
+Output written on MEDS-demo.pdf (26 pages).

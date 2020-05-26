@@ -1,9 +1,8 @@
 # Satellite
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = T, message = F, warning = F)
 ```
-
 
 ## Objectives {- .objectives}
 
@@ -23,14 +22,14 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ### Learning outcomes {-}
 
+The student will learn how to:
+
 1. Browse Google Earth Engine's data catalogue
-1. Map satellite imagery dataset layer
-1. Filter by date
-1. Average values over time
-1. Upload a polygon into assets
-1. Use polygon to extract values for study area
-1. Average values in space within the polygon
-1. Generate a time series chart for satellite data 
+1. Examine basic information about the dataset
+1. Map datasets in the Code Editor
+1. Upload assets, such as a polygon
+1. Adjust time period for averaging
+1. Generate a time series chart for satellite data extracted to a region 
 1. Download data as a text file (csv)
 
 ## Prerequisites {- .prereq}
@@ -111,7 +110,7 @@ href="https://code.earthengine.google.com/?scriptPath=Examples:Datasets/COPERNIC
 
 You should now be seeing the Code Editor. Here are some labels for the user interface to orient yourself:
 
-![Credit: [Google Earth Engine: Code Editor](https://geohackweek.github.io/GoogleEarthEngine/02-code-editor/)](https://geohackweek.github.io/GoogleEarthEngine/fig/02_codeeditor.png)
+![Credit: [Google Earth Engine: Code Editor](images/gee_02_codeeditor.png)
 
 Click **Run** to run the script. Voila! You should see tiles of the satellite data layer appear in the lower Map pane:
 
@@ -162,7 +161,7 @@ For more, see:
 
 ## Create time series chart
 
-Next let's generate a [Time Series Chart](https://developers.google.com/earth-engine/charts_image_series), which is available as user interface (`ui`) that we can print (vs embedding in a whole user interface -- for another day). 
+Next let's generate a [Time Series Chart](https://developers.google.com/earth-engine/charts_image_series), which is available as user interface (`ui`) that we can print (vs embedding in a dedicate [app](https://developers.google.com/earth-engine/apps) or [user interface](https://developers.google.com/earth-engine/ui) -- for another day). 
 
 Its two required parameters are for an image collection and a region (find parameters in the Docs). The third parameter is for the reducer, which is the function that reduces the many pixels into a single value. In our case we want to take the average so we'll use the `ee.Reducer.mean()` function.
 
@@ -197,12 +196,15 @@ In the popped out window of the time series chart, download the comma-seperated 
 
 It is similarly creating an average raster for the entire time domain of this dataset in the Map pane. Try zooming out, realizing that is happening globally. Now that's big data! In a tiny amount of time, with minor effort.
 
+## Your Turn {.challenge}
+
+- Pick another city and start from the top. Generate a polygon zip, upload as an asset and generate the time series.
+
 ## Further Resources {-}
 
 ### Google Earth Engine {-}
 - [GEE Lessons - GeoHackWeek](https://geohackweek.github.io/GoogleEarthEngine/): Software Carpentry style
 - [rgee](https://r-spatial.github.io/rgee/): R package for GEE; still in early development
 - [@gorelickGoogleEarthEngine2017a]
-
 
 

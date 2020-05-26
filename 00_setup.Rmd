@@ -1,5 +1,23 @@
 # Setup {-}
 
+## Apply for accounts
+
+### Google Earth Engine (GEE) account
+
+Please visit:
+
+- [Google Earth Engine signup](https://signup.earthengine.google.com/#!/)
+
+You may need to log out and back into your web browser as the preferred Google account to request permissions. This approval process can take days to weeks unfortunately.
+
+### Twitter developer account
+
+Please visit:
+
+- [Twitter developer signup](https://developer.twitter.com/en/apply-for-access)
+
+I recieved an email for clarification and had the account approved and running by the end of the day.
+
 ## Install software
 
 This workshop will require the following software installed on your machine:

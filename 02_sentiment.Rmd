@@ -1,0 +1,261 @@
+# Sentiment
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F)
+```
+
+## Objectives {- .objectives}
+
+### Question {-}
+
+- How has sentiment around air quality and clean energy changed since air became cleaner? 
+
+### Motivation {-}
+
+Sentiment can be evaluated as either positive or negative. This **binary classification** is the most basic response for **machine learning**, thus a good example for a lesson on machine learning. Text however can have many complicated forms, such as negating terms (eg "happy" vs "_**not**_ happy"), which makes it a good candidate for **deep learning**.
+
+### Approach {-}
+
+1. Get a set of sample tweets before and after the lockdown with some of key terms.
+1. Lookup tweeted words with dictionaries labelling positive or negative, and tally the score. Bren's own Casey O'Hara & Jessica Couture already explained this approach well in their Eco-Data-Science workshop [Text analysis with R](https://github.com/oharac/text_workshop) (2019-02-05).
+1. Introduce TensorFlow starting with a pre-trained model.
+1. Use a sample of the Sentiment140 twitter dataset to train an existing natural language processing (NLP) model.
+1. Predict that over time.
+
+## Prerequisites {- .prereq}
+
+A **Twitter developer account** is required to download tweets and access the https://developer.twitter.com/en/dashboard. You'll need to apply via the [Twitter developer signup](https://developer.twitter.com/en/apply-for-access).
+
+I recieved an email for clarification and had the account approved and running by the end of the day.
+
+## Setup Twitter token
+
+We'll use the [rtweet](https://rtweet.info) R package to get twitter data. You'll need to setup an access token though after applying for a Twitter API
+
+See [Obtaining and using access tokens • rtweet](https://rtweet.info/articles/auth.html):
+
+- Creating a Twitter App
+- Authorization methods
+  - 2. Access token/secret method
+- Authorization in future R sessions
+  ```r
+  library(rtweet)
+  get_token()
+  ```
+  
+For `search_fullarchive` also tried to setup [Dev environment — Twitter Developers](https://developer.twitter.com/en/account/environments), but that didn't seem to work.
+
+## Load R packages
+
+```{r}
+# load libraries ----
+# use librarian to load libraries, installing if needed
+if (!require("librarian")) install.packages("librarian")
+library("librarian")
+
+pkgs <- c(
+  # utility
+  "here","glue","stringr","dplyr","readr",
+  # airquality
+  #"ropensci/ropenaq",
+  # spatial
+  "sf",#"ggmap","mapview","leaflet",
+  # text
+  "rtweet","tidytext" #,"textdata",
+  # tensorflow
+  #"tensorflow","keras","tfhub","rstudio/tfds"
+  )
+shelf(pkgs)
+```
+
+## Search Twitter
+
+Using hashtags from [@gurajalaUnderstandingPublicResponse2019]: #AIRPOLLUTION #AIRQUALITY #CLEANAIR #HAZE #OZONE #PARTICLES #PARTICULATES #PM25 #PM2.5 #PM10 #POLLUTION #SMOG #EMISSIONS 
+
+```{r}
+city_geo <- here("data/city_Delhi-India.geojson")
+now_rds  <- here("data/twitter_aq_delhi_now.rds")
+yr1_rds  <- here("data/twitter_aq_delhi_1yr.rds")
+
+aq_hashes <- c("#AIRPOLLUTION #AIRQUALITY #CLEANAIR #HAZE #OZONE #PARTICLES #PARTICULATES #PM25 #PM2.5 #PM10 #POLLUTION #SMOG #EMISSIONS") %>% 
+  str_replace_all(" ", " OR ")
+
+q_bb <- read_sf(city_geo) %>% 
+  st_bbox() %>% 
+  glue_data(
+  "bounding_box:[{xmin} {ymin} {xmax} {ymax}]")
+
+geocode_str <- read_sf(city_geo) %>% 
+  glue_data(
+  "{round(lat, 4)},{round(lon, 4)},{round(r_mi*2, 2)}mi")
+
+q_geo <- read_sf(city_geo) %>% 
+  glue_data(
+  "point_radius:[{round(lon, 4)} {round(lat, 4)} {round(r_mi*2, 2)}mi]")
+
+if (!file.exists(now_rds)){
+  tbl <- search_tweets(
+    q       = aq_hashes,
+    geocode = geocode_str,
+    n       = 1000)
+  
+  saveRDS(tbl, now_rds)
+}
+
+#if (!file.exists(yr1_rds)){
+if (F){
+  tbl_yr1 <- search_fullarchive(
+    env_name = "research",
+    fromDate = "201905190000",
+    toDate   = "201905260000",
+    q        = glue("({aq_hashes}) {q_geo}"),
+    n        = 1000)
+  
+  saveRDS(tbl_yr1, yr1_rds)
+}
+```
+
+## Calculate dictionary score
+
+```{r}
+s_b <- get_sentiments('bing')
+# s_a <- get_sentiments('afinn')
+# s_n <- get_sentiments('nrc')
+
+tbl <- readRDS(now_rds)
+
+# clean out non-ascii, twitter handles, and urls
+tbl <- tbl %>% 
+  mutate(
+    text_clean = text %>% 
+      str_replace_all("[^[:ascii:]]", "_") %>% 
+      tolower() %>% 
+      str_replace_all("@[^ ]+", "_usr_") %>% 
+      str_replace_all("http[^ ]+", "_url_"))
+
+# tweets to words
+words <- tbl %>% 
+  select(status_id, created_at, screen_name, text_clean) %>% 
+  unnest_tokens(output = word, input = text_clean, token = "words") %>% 
+  anti_join(stop_words, by = "word") %>% 
+  left_join(s_b, by = "word") %>% 
+  left_join(
+    tribble(
+      ~sentiment, ~score,
+      "positive", 1,
+      "negative", -1),
+    by = "sentiment")
+
+# tally score per tweet
+tbl <- tbl %>% 
+  left_join(
+    words %>% 
+      group_by(status_id) %>% 
+      summarize(
+        score = mean(score, na.rm = T)),
+    by = "status_id")
+
+hist(tbl$score)
+mean(na.omit(tbl$score))
+nrow(tbl)
+```
+
+## Test dataset
+
+[For Academics - Sentiment140 - A Twitter Sentiment Analysis Tool](http://help.sentiment140.com/for-students)
+
+```{r}
+test_csv <- here("data/sentiment140_testdata.manual.2009.06.14.csv")
+test <- read_csv(
+  test_csv, col_names = c(
+    "polarity", "status_id", "created_at", "query", "screen_name", "text")) %>% 
+  mutate(
+    # convert negative 0 -> -1, neutral 2 -> 0, positive 4 -> 1  
+    polarity = recode(polarity, `0` = -1, `2` = 0, `4` = 1))
+
+# clean out non-ascii, twitter handles, and urls
+test <- test %>% 
+  mutate(
+    text_clean = text %>% 
+      str_replace_all("[^[:ascii:]]", "_") %>% 
+      tolower() %>% 
+      str_replace_all("@[^ ]+", "_usr_") %>% 
+      str_replace_all("http[^ ]+", "_url_"))
+
+# tweets to words
+words <- test %>% 
+  select(status_id, created_at, screen_name, text_clean) %>% 
+  unnest_tokens(output = word, input = text_clean, token = "words") %>% 
+  anti_join(stop_words, by = "word") %>% 
+  left_join(s_b, by = "word") %>% 
+  left_join(
+    tribble(
+      ~sentiment, ~score,
+      "positive", 1,
+      "negative", -1),
+    by = "sentiment")
+
+# tally score per tweet
+test <- test %>% 
+  left_join(
+    words %>% 
+      group_by(status_id) %>% 
+      summarize(
+        score = mean(score, na.rm = T)),
+    by = "status_id")
+
+hist(test$score)
+nrow(test)
+mean(na.omit(test$score))
+```
+
+## Introducing TensorFlow
+
+[RStudio AI Blog: tfhub: R interface to TensorFlow Hub](https://blogs.rstudio.com/ai/posts/2019-12-18-tfhub-0.7.0/)
+
+You need to install these Python packages once:
+
+```{r, eval=F}
+tensorflow::install_tensorflow()
+keras::install_keras()
+tfhub::install_tfhub()
+tfds::install_tfds()
+reticulate::py_config()
+```
+
+```{r, eval = F}
+library(tfhub)
+library(keras)
+
+layer_mobilenet <- layer_hub(
+  handle = "https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4")
+
+input  <- layer_input(shape = c(224, 224, 3))
+output <- layer_mobilenet(input)
+model  <- keras_model(input, output)
+summary(model)
+```
+
+The `layer_hub()` function above however kept throwing errors like this:
+
+```
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  OSError: SavedModel file does not exist at: /var/folders/2r/grqvdjfn04361tzk8mh60st40000gn/T/tfhub_modules/426589ad685896ab7954855255a52db3442cb38d/{saved_model.pbtxt|saved_model.pb}
+```
+
+There's a lot of Python and R communication that can get easily confused between versions. So let's switch to a clean installation by using Docker. [Install Docker](https://docs.docker.com/get-docker/) if you don't already have it.
+
+Then per [rocker/tensorflow - Docker Hub](https://hub.docker.com/r/rocker/tensorflow) run the following to get a clean RStudio instance with all the TensorFlow and Python dependencies properly installed:
+
+```bash
+docker run -e PASSWORD=mu -p 8787:8787 rocker/ml
+```
+
+```{r, eval = F}
+img <- image_load("data/grace-hopper.jpg", target_size = c(224,224)) %>% 
+image_to_array()
+img <- img/255
+dim(img) <- c(1, dim(img))
+pred <- predict(model, img)
+imagenet_decode_predictions(pred[,-1,drop=FALSE])[[1]]
+```

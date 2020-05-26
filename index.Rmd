@@ -6,8 +6,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-bibliography: [style/zotero_meds-demo.bib, style/packages.bib]
-biblio-style: apalike
+bibliography: style/zotero_meds-demo.bib
 link-citations: yes
 github-repo: bbest/meds-demo
 description: "These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB."
@@ -40,7 +39,7 @@ The two specific technologies featured in this teaching demonstration highlight 
 
 - **Google Earth Engine** leverages the massive storage and computational capabilities of the Google Cloud to analyze petabytes of the publicly available satellite data. For instance, global climatologies averaging across 40 years of temperature can be calculated and mapped in seconds. This is a truly _big data_ platform!
 
-- **TensorFlow** is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of _convolutional neural networks_, which represent a layering of nodes to enable complex pattern matching. These _deep learning_ models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles and respond to your beck and call through Alexa's voice commands.
+- **TensorFlow** is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of _convolutional neural networks_, which represent a layering of nodes to enable complex pattern matching. These _deep learning_ models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles, Netflix recommendations, Spotify playlists and respond to your beck and call through Alexa's voice commands.
 
 ### Motivating Use Case {-}
 

@@ -126,7 +126,7 @@
 \providecommand{\subtitle}[1]{}
 \subtitle{Use Cases for Google Earth Engine \& Sentiment Analysis}
 \author{Ben Best, PhD}
-\date{2020-05-25}
+\date{2020-05-26}
 
 \begin{document}
 \maketitle
@@ -157,7 +157,7 @@ The two specific technologies featured in this teaching demonstration highlight 
 \item
   \textbf{Google Earth Engine} leverages the massive storage and computational capabilities of the Google Cloud to analyze petabytes of the publicly available satellite data. For instance, global climatologies averaging across 40 years of temperature can be calculated and mapped in seconds. This is a truly \emph{big data} platform!
 \item
-  \textbf{TensorFlow} is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of \emph{convolutional neural networks}, which represent a layering of nodes to enable complex pattern matching. These \emph{deep learning} models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles and respond to your beck and call through Alexa's voice commands.
+  \textbf{TensorFlow} is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of \emph{convolutional neural networks}, which represent a layering of nodes to enable complex pattern matching. These \emph{deep learning} models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles, Netflix recommendations, Spotify playlists and respond to your beck and call through Alexa's voice commands.
 \end{itemize}
 
 \hypertarget{motivating-use-case}{%
@@ -189,6 +189,35 @@ See the Setup for required software. For this demonstration to make the most sen
 \hypertarget{setup}{%
 \chapter*{Setup}\label{setup}}
 \addcontentsline{toc}{chapter}{Setup}
+
+\hypertarget{apply-for-accounts}{%
+\section{Apply for accounts}\label{apply-for-accounts}}
+
+\hypertarget{google-earth-engine-gee-account}{%
+\subsection{Google Earth Engine (GEE) account}\label{google-earth-engine-gee-account}}
+
+Please visit:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://signup.earthengine.google.com/\#!/}{Google Earth Engine signup}
+\end{itemize}
+
+You may need to log out and back into your web browser as the preferred Google account to request permissions. This approval process can take days to weeks unfortunately.
+
+\hypertarget{twitter-developer-account}{%
+\subsection{Twitter developer account}\label{twitter-developer-account}}
+
+Please visit:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://developer.twitter.com/en/apply-for-access}{Twitter developer signup}
+\end{itemize}
+
+I recieved an email for clarification and had the account approved and running by the end of the day.
 
 \hypertarget{install-software}{%
 \section{Install software}\label{install-software}}
@@ -283,19 +312,18 @@ Here's a bit of code to install packages that we'll use throughout the workshop.
 ##  [1] Rcpp_1.0.4.6       lubridate_1.7.8    lattice_0.20-38    class_7.3-15      
 ##  [5] assertthat_0.2.1   rprojroot_1.3-2    digest_0.6.25      R6_2.4.1          
 ##  [9] cellranger_1.1.0   backports_1.1.7    reprex_0.3.0       evaluate_0.14     
-## [13] e1071_1.7-3        blogdown_0.17      httr_1.4.1         pillar_1.4.4      
-## [17] rlang_0.4.6        readxl_1.3.1       rstudioapi_0.11    Matrix_1.2-18     
-## [21] rmarkdown_2.1      munsell_0.5.0      broom_0.5.5        janeaustenr_0.1.5 
-## [25] compiler_3.5.2     modelr_0.1.5       xfun_0.14          pkgconfig_2.0.3   
-## [29] vembedr_0.1.3      htmltools_0.4.0    tidyselect_1.1.0   bookdown_0.16     
-## [33] fansi_0.4.1        crayon_1.3.4       dbplyr_1.4.2       withr_2.2.0       
-## [37] SnowballC_0.6.0    grid_3.5.2         nlme_3.1-142       gtable_0.3.0      
-## [41] lifecycle_0.2.0    DBI_1.1.0          magrittr_1.5       tokenizers_0.2.1  
-## [45] scales_1.1.1       KernSmooth_2.23-16 cli_2.0.2          stringi_1.4.6     
-## [49] fs_1.3.1           xml2_1.2.2         ellipsis_0.3.1     generics_0.0.2    
-## [53] vctrs_0.3.0        tools_3.5.2        hms_0.5.3          yaml_2.2.1        
-## [57] colorspace_1.4-1   classInt_0.4-3     rvest_0.3.5        knitr_1.28        
-## [61] haven_2.2.0
+## [13] e1071_1.7-3        httr_1.4.1         pillar_1.4.4       rlang_0.4.6       
+## [17] readxl_1.3.1       rstudioapi_0.11    Matrix_1.2-18      rmarkdown_2.1     
+## [21] munsell_0.5.0      broom_0.5.5        janeaustenr_0.1.5  compiler_3.5.2    
+## [25] modelr_0.1.5       xfun_0.14          pkgconfig_2.0.3    vembedr_0.1.3     
+## [29] htmltools_0.4.0    tidyselect_1.1.0   bookdown_0.16      fansi_0.4.1       
+## [33] crayon_1.3.4       dbplyr_1.4.2       withr_2.2.0        SnowballC_0.6.0   
+## [37] grid_3.5.2         nlme_3.1-142       gtable_0.3.0       lifecycle_0.2.0   
+## [41] DBI_1.1.0          magrittr_1.5       tokenizers_0.2.1   scales_1.1.1      
+## [45] KernSmooth_2.23-16 cli_2.0.2          stringi_1.4.6      fs_1.3.1          
+## [49] xml2_1.2.2         ellipsis_0.3.1     generics_0.0.2     vctrs_0.3.0       
+## [53] tools_3.5.2        hms_0.5.3          yaml_2.2.1         colorspace_1.4-1  
+## [57] classInt_0.4-3     rvest_0.3.5        knitr_1.28         haven_2.2.0
 \end{verbatim}
 
 \hypertarget{create-rmarkdown-file}{%
@@ -350,25 +378,23 @@ Here's a 1 minute video on the awesomeness of Rmarkdown:
 \subsection*{Learning outcomes}\label{learning-outcomes}}
 \addcontentsline{toc}{subsection}{Learning outcomes}
 
+The student will learn how to:
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   Browse Google Earth Engine's data catalogue
 \item
-  Map satellite imagery dataset layer
+  Examine basic information about the dataset
 \item
-  Filter by date
+  Map datasets in the Code Editor
 \item
-  Average values over time
+  Upload assets, such as a polygon
 \item
-  Upload a polygon into assets
+  Adjust time period for averaging
 \item
-  Use polygon to extract values for study area
-\item
-  Average values in space within the polygon
-\item
-  Generate a time series chart for satellite data
+  Generate a time series chart for satellite data extracted to a region
 \item
   Download data as a text file (csv)
 \end{enumerate}
@@ -490,11 +516,7 @@ Open in Code Editor
 
 You should now be seeing the Code Editor. Here are some labels for the user interface to orient yourself:
 
-\begin{figure}
-\centering
-\includegraphics{https://geohackweek.github.io/GoogleEarthEngine/fig/02_codeeditor.png}
-\caption{Credit: \href{https://geohackweek.github.io/GoogleEarthEngine/02-code-editor/}{Google Earth Engine: Code Editor}}
-\end{figure}
+!{[}Credit: \href{images/gee_02_codeeditor.png}{Google Earth Engine: Code Editor}
 
 Click \textbf{Run} to run the script. Voila! You should see tiles of the satellite data layer appear in the lower Map pane:
 
@@ -557,7 +579,7 @@ For more, see:
 \hypertarget{create-time-series-chart}{%
 \section{Create time series chart}\label{create-time-series-chart}}
 
-Next let's generate a \href{https://developers.google.com/earth-engine/charts_image_series}{Time Series Chart}, which is available as user interface (\texttt{ui}) that we can print (vs embedding in a whole user interface -- for another day).
+Next let's generate a \href{https://developers.google.com/earth-engine/charts_image_series}{Time Series Chart}, which is available as user interface (\texttt{ui}) that we can print (vs embedding in a dedicate \href{https://developers.google.com/earth-engine/apps}{app} or \href{https://developers.google.com/earth-engine/ui}{user interface} -- for another day).
 
 Its two required parameters are for an image collection and a region (find parameters in the Docs). The third parameter is for the reducer, which is the function that reduces the many pixels into a single value. In our case we want to take the average so we'll use the \texttt{ee.Reducer.mean()} function.
 
@@ -600,6 +622,15 @@ In the popped out window of the time series chart, download the comma-seperated 
 
 It is similarly creating an average raster for the entire time domain of this dataset in the Map pane. Try zooming out, realizing that is happening globally. Now that's big data! In a tiny amount of time, with minor effort.
 
+\hypertarget{your-turn}{%
+\section{Your Turn}\label{your-turn}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pick another city and start from the top. Generate a polygon zip, upload as an asset and generate the time series.
+\end{itemize}
+
 \hypertarget{further-resources}{%
 \section*{Further Resources}\label{further-resources}}
 \addcontentsline{toc}{section}{Further Resources}
@@ -621,17 +652,59 @@ It is similarly creating an average raster for the entire time domain of this da
 \hypertarget{sentiment}{%
 \chapter{Sentiment}\label{sentiment}}
 
-\hypertarget{twitter-examples}{%
-\section{Twitter Examples}\label{twitter-examples}}
+\hypertarget{objectives-1}{%
+\section*{Objectives}\label{objectives-1}}
+\addcontentsline{toc}{section}{Objectives}
 
-\href{https://twitter.com/search?q=\%22air\%20quality\%22\&src=typed_query}{``air quality'' - Twitter Search / Twitter}
+\hypertarget{question-1}{%
+\subsection*{Question}\label{question-1}}
+\addcontentsline{toc}{subsection}{Question}
 
-\{\{\% tweet ``1263487780799184897'' \%\}\}
+\begin{itemize}
+\tightlist
+\item
+  How has sentiment around air quality and clean energy changed since air became cleaner?
+\end{itemize}
 
-\hypertarget{authenticate-twitter}{%
-\section{Authenticate Twitter}\label{authenticate-twitter}}
+\hypertarget{motivation-1}{%
+\subsection*{Motivation}\label{motivation-1}}
+\addcontentsline{toc}{subsection}{Motivation}
 
-\href{https://rtweet.info/articles/auth.html}{Obtaining and using access tokens • rtweet}:
+Sentiment can be evaluated as either positive or negative. This \textbf{binary classification} is the most basic response for \textbf{machine learning}, thus a good example for a lesson on machine learning. Text however can have many complicated forms, such as negating terms (eg ``happy'' vs ``\emph{\textbf{not}} happy''), which makes it a good candidate for \textbf{deep learning}.
+
+\hypertarget{approach}{%
+\subsection*{Approach}\label{approach}}
+\addcontentsline{toc}{subsection}{Approach}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Get a set of sample tweets before and after the lockdown with some of key terms.
+\item
+  Lookup tweeted words with dictionaries labelling positive or negative, and tally the score. Bren's own Casey O'Hara \& Jessica Couture already explained this approach well in their Eco-Data-Science workshop \href{https://github.com/oharac/text_workshop}{Text analysis with R} (2019-02-05).
+\item
+  Introduce TensorFlow starting with a pre-trained model.
+\item
+  Use a sample of the Sentiment140 twitter dataset to train an existing natural language processing (NLP) model.
+\item
+  Predict that over time.
+\end{enumerate}
+
+\hypertarget{prerequisites-2}{%
+\section*{Prerequisites}\label{prerequisites-2}}
+\addcontentsline{toc}{section}{Prerequisites}
+
+A \textbf{Twitter developer account} is required to download tweets and access the \url{https://developer.twitter.com/en/dashboard}. You'll need to apply via the \href{https://developer.twitter.com/en/apply-for-access}{Twitter developer signup}.
+
+I recieved an email for clarification and had the account approved and running by the end of the day.
+
+\hypertarget{setup-twitter-token}{%
+\section{Setup Twitter token}\label{setup-twitter-token}}
+
+We'll use the \href{https://rtweet.info}{rtweet} R package to get twitter data. You'll need to setup an access token though after applying for a Twitter API
+
+See \href{https://rtweet.info/articles/auth.html}{Obtaining and using access tokens • rtweet}:
 
 \begin{itemize}
 \item
@@ -660,26 +733,10 @@ It is similarly creating an average raster for the entire time domain of this da
 \end{Shaded}
 \end{itemize}
 
-\hypertarget{enable-google-geocoding}{%
-\section{Enable Google Geocoding}\label{enable-google-geocoding}}
+For \texttt{search\_fullarchive} also tried to setup \href{https://developer.twitter.com/en/account/environments}{Dev environment --- Twitter Developers}, but that didn't seem to work.
 
-TODO: switch to OpenStreetMap API, for radius too
-
-To obtain an API key and enable services, go to \url{https://cloud.google.com/maps-platform/}. {[}as \href{mailto:ben@ecoquants.com}{\nolinkurl{ben@ecoquants.com}}{]}
-
-\begin{itemize}
-\tightlist
-\item
-  Create project ``meds-gee''
-\item
-  \href{https://console.cloud.google.com/google/maps-apis/new?authuser=1\&project=meds-gee\&folder=\&organizationId=}{Maps APIs and Servi\ldots{} -- Google Maps -- meds-gee -- Google Cloud Platform}
-\item
-  APIs sidebar. Click Geocoding API. Enable.
-\item
-  Credentials sidebar. + CREATE CREDENTIALS -\textgreater{} API key
-\item
-  Saved to \texttt{\textasciitilde{}/private/google\_meds-gee\_api-key.txt}
-\end{itemize}
+\hypertarget{load-r-packages}{%
+\section{Load R packages}\label{load-r-packages}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -692,58 +749,80 @@ To obtain an API key and enable services, go to \url{https://cloud.google.com/ma
   \CommentTok{# utility}
   \StringTok{"here"}\NormalTok{,}\StringTok{"glue"}\NormalTok{,}\StringTok{"stringr"}\NormalTok{,}\StringTok{"dplyr"}\NormalTok{,}\StringTok{"readr"}\NormalTok{,}
   \CommentTok{# airquality}
-  \StringTok{"ropensci/ropenaq"}\NormalTok{,}
+  \CommentTok{#"ropensci/ropenaq",}
   \CommentTok{# spatial}
-  \StringTok{"ggmap"}\NormalTok{,}\StringTok{"mapview"}\NormalTok{,}\StringTok{"leaflet"}\NormalTok{,}
+  \StringTok{"sf"}\NormalTok{,}\CommentTok{#"ggmap","mapview","leaflet",}
   \CommentTok{# text}
-  \StringTok{"rtweet"}\NormalTok{,}\StringTok{"textdata"}\NormalTok{,}\StringTok{"tidytext"}\NormalTok{,}
+  \StringTok{"rtweet"}\NormalTok{,}\StringTok{"tidytext"} \CommentTok{#,"textdata",}
   \CommentTok{# tensorflow}
-  \StringTok{"tensorflow"}\NormalTok{,}\StringTok{"keras"}\NormalTok{,}\StringTok{"tfhub"}\NormalTok{,}\StringTok{"rstudio/tfds"}\NormalTok{)}
+  \CommentTok{#"tensorflow","keras","tfhub","rstudio/tfds"}
+\NormalTok{  )}
 \KeywordTok{shelf}\NormalTok{(pkgs)}
-
-\CommentTok{# variables ----}
-\NormalTok{q          <-}\StringTok{ '"air quality"'}
-\NormalTok{city       <-}\StringTok{ "Delhi, India"}
-\NormalTok{city_r     <-}\StringTok{ "15mi"}
-
-\NormalTok{q_s        <-}\StringTok{ }\KeywordTok{str_remove_all}\NormalTok{(q, }\StringTok{'[ ,"]'}\NormalTok{)}
-\NormalTok{city_s     <-}\StringTok{ }\KeywordTok{str_replace}\NormalTok{(city, }\StringTok{", "}\NormalTok{, }\StringTok{"+"}\NormalTok{)}
-\NormalTok{city_geo   <-}\StringTok{ }\KeywordTok{glue}\NormalTok{(}\StringTok{"data/city_\{city_s\}.geojson"}\NormalTok{)}
-\CommentTok{#cities_csv <- glue("data/city_\{loc_s\}.csv")}
-\NormalTok{tweets_rds <-}\StringTok{ }\KeywordTok{glue}\NormalTok{(}\StringTok{"data/tweets_\{q_s\}_\{city_s\}.rds"}\NormalTok{)}
-\CommentTok{#tbl_rds <- glue("data/tweets_\{qloc\}.csv")}
-\CommentTok{#d_csv  <- "data/tweets_air-quality.csv"}
-\NormalTok{gkey       <-}\StringTok{ "~/private/google_meds-gee_api-key.txt"}
-
-\CommentTok{# get location lon/lat from place name}
-\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{file.exists}\NormalTok{(loc_csv))\{}
-  \KeywordTok{register_google}\NormalTok{(}\DataTypeTok{key =} \KeywordTok{readLines}\NormalTok{(gkey))}
-
-\NormalTok{  loc_xy <-}\StringTok{ }\KeywordTok{geocode}\NormalTok{(loc)}
-  \KeywordTok{stopifnot}\NormalTok{(}\KeywordTok{nrow}\NormalTok{(loc_xy) }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)}
-  
-  \KeywordTok{write_as_csv}\NormalTok{(loc_xy, loc_csv)}
-\NormalTok{\}}
-\NormalTok{loc_xy  <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(loc_csv)}
-\NormalTok{loc_xyr <-}\StringTok{ }\KeywordTok{glue}\NormalTok{(}\StringTok{"\{loc_xy$lat\},\{loc_xy$lon\},\{loc_r\}"}\NormalTok{)}
-
-\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{file.exists}\NormalTok{(tbl_rds))\{}
-\NormalTok{  tbl <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}
-\NormalTok{    q, }\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }
-    \DataTypeTok{geocode =}\NormalTok{ loc_xyr)}
-
-  \KeywordTok{saveRDS}\NormalTok{(tbl, tbl_rds)}
-\NormalTok{\}}
-\NormalTok{tbl <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(tbl_rds)}
 \end{Highlighting}
 \end{Shaded}
+
+\hypertarget{search-twitter}{%
+\section{Search Twitter}\label{search-twitter}}
+
+Using hashtags from \citep{gurajalaUnderstandingPublicResponse2019}: \#AIRPOLLUTION \#AIRQUALITY \#CLEANAIR \#HAZE \#OZONE \#PARTICLES \#PARTICULATES \#PM25 \#PM2.5 \#PM10 \#POLLUTION \#SMOG \#EMISSIONS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{city_geo <-}\StringTok{ }\KeywordTok{here}\NormalTok{(}\StringTok{"data/city_Delhi-India.geojson"}\NormalTok{)}
+\NormalTok{now_rds  <-}\StringTok{ }\KeywordTok{here}\NormalTok{(}\StringTok{"data/twitter_aq_delhi_now.rds"}\NormalTok{)}
+\NormalTok{yr1_rds  <-}\StringTok{ }\KeywordTok{here}\NormalTok{(}\StringTok{"data/twitter_aq_delhi_1yr.rds"}\NormalTok{)}
+
+\NormalTok{aq_hashes <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"#AIRPOLLUTION #AIRQUALITY #CLEANAIR #HAZE #OZONE #PARTICLES #PARTICULATES #PM25 #PM2.5 #PM10 #POLLUTION #SMOG #EMISSIONS"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{" "}\NormalTok{, }\StringTok{" OR "}\NormalTok{)}
+
+\NormalTok{q_bb <-}\StringTok{ }\KeywordTok{read_sf}\NormalTok{(city_geo) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{st_bbox}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{glue_data}\NormalTok{(}
+  \StringTok{"bounding_box:[\{xmin\} \{ymin\} \{xmax\} \{ymax\}]"}\NormalTok{)}
+
+\NormalTok{geocode_str <-}\StringTok{ }\KeywordTok{read_sf}\NormalTok{(city_geo) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{glue_data}\NormalTok{(}
+  \StringTok{"\{round(lat, 4)\},\{round(lon, 4)\},\{round(r_mi*2, 2)\}mi"}\NormalTok{)}
+
+\NormalTok{q_geo <-}\StringTok{ }\KeywordTok{read_sf}\NormalTok{(city_geo) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{glue_data}\NormalTok{(}
+  \StringTok{"point_radius:[\{round(lon, 4)\} \{round(lat, 4)\} \{round(r_mi*2, 2)\}mi]"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{file.exists}\NormalTok{(now_rds))\{}
+\NormalTok{  tbl <-}\StringTok{ }\KeywordTok{search_tweets}\NormalTok{(}
+    \DataTypeTok{q       =}\NormalTok{ aq_hashes,}
+    \DataTypeTok{geocode =}\NormalTok{ geocode_str,}
+    \DataTypeTok{n       =} \DecValTok{1000}\NormalTok{)}
+  
+  \KeywordTok{saveRDS}\NormalTok{(tbl, now_rds)}
+\NormalTok{\}}
+
+\CommentTok{#if (!file.exists(yr1_rds))\{}
+\ControlFlowTok{if}\NormalTok{ (F)\{}
+\NormalTok{  tbl_yr1 <-}\StringTok{ }\KeywordTok{search_fullarchive}\NormalTok{(}
+    \DataTypeTok{env_name =} \StringTok{"research"}\NormalTok{,}
+    \DataTypeTok{fromDate =} \StringTok{"201905190000"}\NormalTok{,}
+    \DataTypeTok{toDate   =} \StringTok{"201905260000"}\NormalTok{,}
+    \DataTypeTok{q        =} \KeywordTok{glue}\NormalTok{(}\StringTok{"(\{aq_hashes\}) \{q_geo\}"}\NormalTok{),}
+    \DataTypeTok{n        =} \DecValTok{1000}\NormalTok{)}
+  
+  \KeywordTok{saveRDS}\NormalTok{(tbl_yr1, yr1_rds)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{calculate-dictionary-score}{%
+\section{Calculate dictionary score}\label{calculate-dictionary-score}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{s_b <-}\StringTok{ }\KeywordTok{get_sentiments}\NormalTok{(}\StringTok{'bing'}\NormalTok{)}
-\NormalTok{s_a <-}\StringTok{ }\KeywordTok{get_sentiments}\NormalTok{(}\StringTok{'afinn'}\NormalTok{)}
-\NormalTok{s_n <-}\StringTok{ }\KeywordTok{get_sentiments}\NormalTok{(}\StringTok{'nrc'}\NormalTok{)}
+\CommentTok{# s_a <- get_sentiments('afinn')}
+\CommentTok{# s_n <- get_sentiments('nrc')}
 
+\NormalTok{tbl <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(now_rds)}
+
+\CommentTok{# clean out non-ascii, twitter handles, and urls}
 \NormalTok{tbl <-}\StringTok{ }\NormalTok{tbl }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}
     \DataTypeTok{text_clean =}\NormalTok{ text }\OperatorTok{%>%}\StringTok{ }
@@ -751,414 +830,133 @@ To obtain an API key and enable services, go to \url{https://cloud.google.com/ma
 \StringTok{      }\KeywordTok{tolower}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
 \StringTok{      }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{"@[^ ]+"}\NormalTok{, }\StringTok{"_usr_"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{      }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{"http[^ ]+"}\NormalTok{, }\StringTok{"_url_"}\NormalTok{))}
-\CommentTok{# tbl %>% select(created_at, screen_name, text, text_clean) %>% View()}
 
-\NormalTok{df <-}\StringTok{ }\NormalTok{tbl }\OperatorTok{%>%}\StringTok{ }
+\CommentTok{# tweets to words}
+\NormalTok{words <-}\StringTok{ }\NormalTok{tbl }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{select}\NormalTok{(status_id, created_at, screen_name, text_clean) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{unnest_tokens}\NormalTok{(}\DataTypeTok{output =}\NormalTok{ word, }\DataTypeTok{input =}\NormalTok{ text_clean, }\DataTypeTok{token =} \StringTok{"words"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{anti_join}\NormalTok{(stop_words, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{left_join}\NormalTok{(s_b, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{city-osm-poly}{%
-\section{city osm poly}\label{city-osm-poly}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{source}\NormalTok{(}\StringTok{"functions.R"}\NormalTok{)}
-
-\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\KeywordTok{file.exists}\NormalTok{(city_geo))}
-  \KeywordTok{city2geo}\NormalTok{(city_s, city_geo)}
-\NormalTok{city_ply <-}\StringTok{ }\KeywordTok{read_sf}\NormalTok{(city_geo)}
-\KeywordTok{write_sf}\NormalTok{(city_ply, }\StringTok{"data/city_delhi/delhi.shp"}\NormalTok{)}
-
-
-\CommentTok{# https://developers.google.com/earth-engine/charts_image_series}
-\KeywordTok{mapview}\NormalTok{(city_ply)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{openaq}{%
-\section{openaq}\label{openaq}}
-
-\begin{itemize}
-\item
-  API: \url{https://docs.openaq.org/\#api-Measurements-GetMeasurements}
-\item
-  \href{https://docs.ropensci.org/ropenaq/}{ropenaq}: Accesses Air Quality Data from the Open Data Platform OpenAQ
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ropenaq)}
-\KeywordTok{library}\NormalTok{(tidyr)}
-
-\NormalTok{cities_table <-}\StringTok{ }\KeywordTok{aq_cities}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(city,}\StringTok{"Delhi"}\NormalTok{))}
-
-\KeywordTok{aq_cities}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(city,}\StringTok{"Delhi"}\NormalTok{))}
-
-\NormalTok{city_locs <-}\StringTok{ }\KeywordTok{aq_locations}\NormalTok{(}\DataTypeTok{country =} \StringTok{"IN"}\NormalTok{, }\DataTypeTok{city =} \StringTok{"Delhi"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(no2, pm25) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(count))}
-\KeywordTok{View}\NormalTok{(city_locs)}
-
-
-\NormalTok{loc_d <-}\StringTok{ }\NormalTok{city_locs }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{count) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{unnest}\NormalTok{(countsByMeasurement) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}
-\NormalTok{    parameter }\OperatorTok{==}\StringTok{ "no2"}\NormalTok{,}
-    \KeywordTok{date}\NormalTok{(lastUpdated) }\OperatorTok{>}\StringTok{ }\KeywordTok{now}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{date}\NormalTok{() }\OperatorTok{-}\StringTok{ }\KeywordTok{days}\NormalTok{(}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(count)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{slice}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-
-\NormalTok{loc <-}\StringTok{ }\NormalTok{loc_d}\OperatorTok{$}\NormalTok{location}
-\NormalTok{loc <-}\StringTok{ }\NormalTok{loc_d}\OperatorTok{$}\NormalTok{location }\OperatorTok{%>%}\StringTok{ }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{" "}\NormalTok{, }\StringTok{"+"}\NormalTok{)}
-
-\NormalTok{city_loc_d <-}\StringTok{ }\NormalTok{city_locs }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(location }\OperatorTok{==}\StringTok{ }\NormalTok{loc)}
-
-\NormalTok{city_loc_d }\OperatorTok{%>%}\StringTok{ }\KeywordTok{View}\NormalTok{()}
-
-\NormalTok{city_locs }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(location }\OperatorTok{==}\StringTok{ }\NormalTok{loc) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{View}\NormalTok{()}
-
-\NormalTok{m_no2 <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}\DataTypeTok{country =} \StringTok{"IN"}\NormalTok{, }\DataTypeTok{city =} \StringTok{"Delhi"}\NormalTok{, }\DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{)}
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m_no2}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# "2019-12-12" "2020-05-23"}
-\KeywordTok{attr}\NormalTok{(m_no2, }\StringTok{"meta"}\NormalTok{) }\CommentTok{# limit: 10,000;  found: 1,162,354}
-
-\NormalTok{m_no2 <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}
-  \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"10"}\NormalTok{,}
-  \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(}
-    \KeywordTok{aq_measurements}\NormalTok{(}
-      \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"100"}\NormalTok{,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{2}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(}
-    \KeywordTok{aq_measurements}\NormalTok{(}
-      \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"100"}\NormalTok{,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{3}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(}
-    \KeywordTok{aq_measurements}\NormalTok{(}
-      \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"100"}\NormalTok{,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{4}\NormalTok{))}
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m_no2}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# "2019-12-12" "2020-05-23"}
-\KeywordTok{attr}\NormalTok{(m_no2, }\StringTok{"meta"}\NormalTok{) }\CommentTok{# limit: 10,000;  found: 35,069}
-
-\NormalTok{m1 <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}
-      \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"100"}\NormalTok{,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{1}\NormalTok{)}
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m1}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# "2020-02-24" "2020-05-23"}
-\KeywordTok{attr}\NormalTok{(m1, }\StringTok{"meta"}\NormalTok{) }\CommentTok{# limit: 10,000;  found: 35,069}
-
-\NormalTok{m2 <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}
-      \DataTypeTok{latitude  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{latitude, }\DataTypeTok{longitude =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{longitude, }\DataTypeTok{radius    =} \StringTok{"100"}\NormalTok{,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }\DataTypeTok{page =} \DecValTok{2}\NormalTok{)}
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m2}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# }
-\KeywordTok{attr}\NormalTok{(m2, }\StringTok{"meta"}\NormalTok{) }\CommentTok{# limit: 10,000;  found:}
-
-\NormalTok{location <-}\StringTok{ }\NormalTok{https}\OperatorTok{:}\ErrorTok{//}\NormalTok{api.openaq.org}\OperatorTok{/}\NormalTok{v1}\OperatorTok{/}\NormalTok{locations}
-
-\NormalTok{q_loc <-}\StringTok{ }\NormalTok{loc_d}\OperatorTok{$}\NormalTok{location }\OperatorTok{%>%}\StringTok{ }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{" "}\NormalTok{, }\StringTok{"+"}\NormalTok{)}
-\NormalTok{q_loc}
-\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{glue}\NormalTok{(}\StringTok{"https://api.openaq.org/v1/locations?location=\{q_loc\}"}\NormalTok{))}
-\NormalTok{openaq}
-\NormalTok{https}\OperatorTok{:}\ErrorTok{//}\NormalTok{api.openaq.org}\OperatorTok{/}\NormalTok{v1}\OperatorTok{/}\NormalTok{measurements?location=Shadipur}\OperatorTok{%2C%}\NormalTok{2BDelhi}\OperatorTok{%2B-%}\NormalTok{2BCPCB}\OperatorTok{&}\NormalTok{parameter=no2}
-
-\NormalTok{https}\OperatorTok{:}\ErrorTok{//}\NormalTok{api.openaq.org}\OperatorTok{/}\NormalTok{v1}\OperatorTok{/}\NormalTok{locations}\OperatorTok{/}\NormalTok{IN}\DecValTok{-88}
-\NormalTok{https}\OperatorTok{:}\ErrorTok{//}\NormalTok{api.openaq.org}\OperatorTok{/}\NormalTok{v1}\OperatorTok{/}\NormalTok{locations?location=Shadipur,}\OperatorTok{+}\NormalTok{Delhi}\OperatorTok{+-+}\NormalTok{CPCB}
-\NormalTok{https}\OperatorTok{:}\ErrorTok{//}\NormalTok{api.openaq.org}\OperatorTok{/}\NormalTok{v1}\OperatorTok{/}\NormalTok{measurements?location=Shadipur,}\OperatorTok{+}\NormalTok{Delhi}\OperatorTok{+-+}\NormalTok{CPCB}\OperatorTok{&}\NormalTok{parameter=no2}
-
-\KeywordTok{library}\NormalTok{(httr)}
-
-\NormalTok{m_url <-}\StringTok{ "https://api.openaq.org/v1/measurements"}
-
-\NormalTok{json_url <-}\StringTok{ }\KeywordTok{glue}\NormalTok{(}\StringTok{"https://api.openaq.org/v1/measurements?location=\{q_loc\}&parameter=no2&limit=1&format=json"}\NormalTok{)}
-\NormalTok{x <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}
-\NormalTok{    m_url, }
-    \DataTypeTok{query =} \KeywordTok{list}\NormalTok{(}
-      \DataTypeTok{location  =}\NormalTok{ loc_d}\OperatorTok{$}\NormalTok{location,}
-      \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{,}
-      \DataTypeTok{format    =} \StringTok{"json"}\NormalTok{,}
-      \DataTypeTok{limit     =} \DecValTok{1}\NormalTok{))}
-\NormalTok{meta <-}\StringTok{ }\KeywordTok{content}\NormalTok{(x, }\StringTok{"text"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{fromJSON}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\NormalTok{.}\OperatorTok{$}\NormalTok{meta}
-
-\NormalTok{n_max   <-}\StringTok{ }\DecValTok{10000}
-\NormalTok{n_pages <-}\StringTok{ }\KeywordTok{ceiling}\NormalTok{(meta}\OperatorTok{$}\NormalTok{found}\OperatorTok{/}\NormalTok{n_max)}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{pages)\{ }\CommentTok{# i = 2}
-\NormalTok{  date_beg <-}\StringTok{ }\NormalTok{loc_d}\OperatorTok{$}\NormalTok{firstUpdated }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as_date}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.character}\NormalTok{()}
-\NormalTok{  date_end <-}\StringTok{ }\NormalTok{loc_d}\OperatorTok{$}\NormalTok{firstUpdated }\OperatorTok{+}\StringTok{ }\KeywordTok{days}\NormalTok{(}\DecValTok{60}\NormalTok{)}
-\NormalTok{  date_end <-}\StringTok{ }\KeywordTok{as_date}\NormalTok{(date_end) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.character}\NormalTok{()}
-
-\NormalTok{  date_beg <-}\StringTok{ }\KeywordTok{date}\NormalTok{(}\StringTok{"2018-01-01"}\NormalTok{) }
-\NormalTok{  date_end <-}\StringTok{ }\NormalTok{date_beg }\OperatorTok{+}\StringTok{ }\KeywordTok{months}\NormalTok{(}\DecValTok{1}\NormalTok{)}
-
-\NormalTok{  x <-}\StringTok{ }\KeywordTok{GET}\NormalTok{(}
-\NormalTok{    m_url, }
-    \DataTypeTok{query =} \KeywordTok{list}\NormalTok{(}
-      \CommentTok{#location  = loc_d$location,}
-      \DataTypeTok{coordinates =} \KeywordTok{with}\NormalTok{(city_ply, }\KeywordTok{glue}\NormalTok{(}\StringTok{"\{round(lat,2)\},\{round(lon,2)\}"}\NormalTok{)),}
-      \CommentTok{#radius      = 2500, # default}
-      \DataTypeTok{radius      =} \DecValTok{1000000}\NormalTok{, }\CommentTok{# default}
-      \DataTypeTok{parameter   =} \StringTok{"no2"}\NormalTok{,}
-      \DataTypeTok{format      =} \StringTok{"csv"}\NormalTok{,}
-      \CommentTok{#format    = "json",}
-      \DataTypeTok{date_from   =}\NormalTok{ date_beg,}
-      \DataTypeTok{date_to     =}\NormalTok{ date_end,}
-      \CommentTok{#limit       = n_max,}
-      \DataTypeTok{limit       =} \DecValTok{5}\NormalTok{,}
-      \DataTypeTok{page        =}\NormalTok{ i))}
-\NormalTok{  x}\OperatorTok{$}\NormalTok{url}
-  \CommentTok{#if (http_type(x) != "application/json")}
-  \CommentTok{#  stop("API did not return json", call. = F)}
-  \CommentTok{#cat(content(x, "text")) # \{"statusCode":404,"error":"Not Found"\}}
-  \CommentTok{# no2 unit: µg/m³}
-  
-  \CommentTok{#y <- fromJSON(content(x, "text"))}
-  
-\NormalTok{  y <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{content}\NormalTok{(x, }\StringTok{"text"}\NormalTok{))}
-\NormalTok{  y}
-  
-\NormalTok{  y }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{select}\NormalTok{(}\DataTypeTok{dtime_utc =}\NormalTok{ utc, }\DataTypeTok{no2_mgm3 =}\NormalTok{ value) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{write_csv}\NormalTok{(}\StringTok{"data/aq_delhi_no2.csv"}\NormalTok{, }\DataTypeTok{append =} \KeywordTok{ifelse}\NormalTok{(i }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{, T, F))}
-  \CommentTok{# 6636}
-\NormalTok{\}}
-
-
-\NormalTok{d <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(url)}
-
- \OperatorTok{%>%}\StringTok{   }\NormalTok{.}\OperatorTok{$}\NormalTok{results}
-\NormalTok{tbl <-}\StringTok{ }\NormalTok{res}\OperatorTok{$}\NormalTok{results }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{()}
-\KeywordTok{names}\NormalTok{(tbl)}
-\NormalTok{tbl }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(parameter, }\DataTypeTok{date_utc =}\NormalTok{ tbl}\OperatorTok{$}\NormalTok{date}\OperatorTok{$}\NormalTok{)}
-\KeywordTok{names}\NormalTok{(res}\OperatorTok{$}\NormalTok{results)}
-\NormalTok{m_no2_a <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}
-  \DataTypeTok{country =} \StringTok{"IN"}\NormalTok{, }\DataTypeTok{city =} \StringTok{"Delhi"}\NormalTok{, }\DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{, }
-  \DataTypeTok{attribution =}\NormalTok{ T, }\DataTypeTok{averaging_period =}\NormalTok{ T, }\DataTypeTok{source_name =}\NormalTok{ T)}
-
-\KeywordTok{aq_locations}\NormalTok{(}\DataTypeTok{country =} \StringTok{"IN"}\NormalTok{, }\DataTypeTok{city =} \StringTok{"Delhi"}\NormalTok{)}
-\NormalTok{m_no2_loc <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}
-  \CommentTok{#country = "IN", city = "Delhi", location = "Shadipur, New Delhi - CPCB", }
-  \CommentTok{#country = "IN", city = "Delhi", location = loc, }
-  \CommentTok{#location = "DTU, Delhi - CPCB", }
-  \DataTypeTok{location =} \StringTok{"DTU,+Delhi+-+CPCB"}\NormalTok{, }
-  \CommentTok{#country = "IN", city = "Delhi", location = "IN-88", }
-  \DataTypeTok{parameter =} \StringTok{"no2"}\NormalTok{)}
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m_no2_loc}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# }
-\KeywordTok{attr}\NormalTok{(m_no2_loc, }\StringTok{"meta"}\NormalTok{) }\CommentTok{# limit: 10,000;  found: }
-
-\NormalTok{aq_measurements}
-
-\NormalTok{tmp <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}\DataTypeTok{country=}\StringTok{"IN"}\NormalTok{, }\DataTypeTok{city=}\StringTok{"Delhi"}\NormalTok{, }\DataTypeTok{location=}\StringTok{"Anand+Vihar"}\NormalTok{, }\DataTypeTok{parameter=}\StringTok{"pm25"}\NormalTok{)}
-
-\NormalTok{coordinates, radius}
-\NormalTok{date_from}
-\NormalTok{date_to}
-
-\NormalTok{m_pm25 <-}\StringTok{ }\KeywordTok{aq_measurements}\NormalTok{(}\DataTypeTok{country =} \StringTok{"IN"}\NormalTok{, }\DataTypeTok{city =} \StringTok{"Delhi"}\NormalTok{, }\DataTypeTok{parameter =} \StringTok{"pm25"}\NormalTok{)}
-\KeywordTok{attr}\NormalTok{(m, }\StringTok{"meta"}\NormalTok{)}
-\CommentTok{# limit: 10,000;  found: 1,141,521}
-
-\KeywordTok{range}\NormalTok{(}\KeywordTok{as_date}\NormalTok{(m_pm25}\OperatorTok{$}\NormalTok{dateUTC)) }\CommentTok{# "2019-12-12" "2020-05-23"}
-\CommentTok{#, limit = 10, page = 1)}
-\KeywordTok{kable}\NormalTok{(results_table)}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{aqicn.org}{%
-\section{aqicn.org}\label{aqicn.org}}
-
-Downloaded from:
-- \href{https://aqicn.org/data-platform/register/}{Air Quality Historical Data Platform}
-
-\href{https://aqicn.org/city/delhi/}{aqicn.org/city/delhi} - Delhi Air Pollution: Real-time Air Quality Index; daily avg of this station:
-- Anand Vihar, Delhi
-sources:
-- Delhi Pollution Control Commitee (Government of NCT of Delhi)
-- CPCB - India Central Pollution Control Board
-
-TODO:
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://aqicn.org/city/beijing/}{Beijing Air Pollution: Real-time Air Quality Index}
-\item
-  \href{https://aqicn.org/data-platform/covid19/}{COVID-19 Worldwide Air Quality data}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    380 major cities in the world, from January 2020 until now.
-  \end{itemize}
-\end{itemize}
-
-The CSV data sets can be downloaded programatically: The url is
-
-\url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/period}
-
-Where period is any of 2019Q1, 2019Q2, 2019Q3, 2019Q4, 2018H1, 2017H1, 2016H1, 2015H1.
-
-For instance using curl:
-curl --compressed -o waqi-covid-2020.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2020}
-curl --compressed -o waqi-covid-2019Q1.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2019Q1}
-curl --compressed -o waqi-covid-2019Q2.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2019Q2}
-curl --compressed -o waqi-covid-2019Q3.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2019Q3}
-curl --compressed -o waqi-covid-2019Q4.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2019Q4}
-curl --compressed -o waqi-covid-2018H1.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2018H1}
-curl --compressed -o waqi-covid-2017H1.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2017H1}
-curl --compressed -o waqi-covid-2016H1.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2016H1}
-curl --compressed -o waqi-covid-2015H1.csv \url{https://aqicn.org/data-platform/covid19/report/14286-3d64290c/2015H1}
-To download the list of stations with latitude, longitude and EPA feed:
-curl --compressed -o airquality-covid19-cities.json \url{https://aqicn.org/data-platform/covid19/airquality-covid19-cities.json}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(dygraphs)}
-\KeywordTok{library}\NormalTok{(lubridate)}
-\KeywordTok{library}\NormalTok{(xts)}
-
-\CommentTok{#d <- read_csv("data/new-delhi us embassy, india-air-quality.csv") %>% }
-\NormalTok{d <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/anand-vihar, delhi, delhi, india-air-quality.csv"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
-    \DataTypeTok{date =} \KeywordTok{as_date}\NormalTok{(date))}
-\NormalTok{d}
-\CommentTok{# date        pm25  pm10    o3   no2   so2    co}
-\CommentTok{#View(d)}
-\KeywordTok{range}\NormalTok{(d}\OperatorTok{$}\NormalTok{date)}
-\CommentTok{#range(d$jday)}
-\NormalTok{d <-}\StringTok{ }\NormalTok{d }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
-    \DataTypeTok{jday =} \KeywordTok{yday}\NormalTok{(date))}
-
-\CommentTok{# calculate climatology}
-\NormalTok{d_c <-}\StringTok{ }\NormalTok{d }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(jday) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{no2_clim =} \KeywordTok{mean}\NormalTok{(no2, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }
-
-\CommentTok{# show in time}
-\NormalTok{d_y <-}\StringTok{ }\KeywordTok{expand_grid}\NormalTok{(}
-  \DataTypeTok{year =} \KeywordTok{min}\NormalTok{(}\KeywordTok{year}\NormalTok{(d}\OperatorTok{$}\NormalTok{date))}\OperatorTok{:}\KeywordTok{year}\NormalTok{(}\KeywordTok{now}\NormalTok{()), }
-  \DataTypeTok{jday =} \DecValTok{1}\OperatorTok{:}\DecValTok{365}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
-    \DataTypeTok{date =} \KeywordTok{date}\NormalTok{(}\KeywordTok{glue}\NormalTok{(}\StringTok{"\{year\}-01-01"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{days}\NormalTok{(jday }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{left_join}\NormalTok{(d_c, }\DataTypeTok{by =} \StringTok{"jday"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(date }\OperatorTok{<=}\StringTok{ }\KeywordTok{date}\NormalTok{(}\KeywordTok{now}\NormalTok{()))}
-
-\NormalTok{d_y2 <-}\StringTok{ }\NormalTok{d_y }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{select}\NormalTok{(date, no2_clim) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(s_b, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{left_join}\NormalTok{(}
-\NormalTok{    d }\OperatorTok{%>%}\StringTok{ }
-\StringTok{      }\KeywordTok{select}\NormalTok{(date, no2),}
-    \DataTypeTok{by =} \StringTok{"date"}\NormalTok{)}
+    \KeywordTok{tribble}\NormalTok{(}
+      \OperatorTok{~}\NormalTok{sentiment, }\OperatorTok{~}\NormalTok{score,}
+      \StringTok{"positive"}\NormalTok{, }\DecValTok{1}\NormalTok{,}
+      \StringTok{"negative"}\NormalTok{, }\DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{by =} \StringTok{"sentiment"}\NormalTok{)}
 
-\CommentTok{#x <- xts(x = d$pm25, order.by = d$date)}
-\NormalTok{x <-}\StringTok{ }\KeywordTok{xts}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{select}\NormalTok{(d_y2, }\OperatorTok{-}\NormalTok{date), }\DataTypeTok{order.by =} \KeywordTok{pull}\NormalTok{(d_y2, date))}
-\KeywordTok{dygraph}\NormalTok{(x) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{dyRangeSelector}\NormalTok{()}
+\CommentTok{# tally score per tweet}
+\NormalTok{tbl <-}\StringTok{ }\NormalTok{tbl }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(}
+\NormalTok{    words }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{group_by}\NormalTok{(status_id) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{summarize}\NormalTok{(}
+        \DataTypeTok{score =} \KeywordTok{mean}\NormalTok{(score, }\DataTypeTok{na.rm =}\NormalTok{ T)),}
+    \DataTypeTok{by =} \StringTok{"status_id"}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(tbl}\OperatorTok{$}\NormalTok{score)}
 \end{Highlighting}
 \end{Shaded}
 
-Next steps: weekly / monthly average
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://rpubs.com/ceshine/beijing_pm25_201701_201803}{RPubs - Beijing PM 2.5 Line Charts 2017/01 to 2018/03}
-  \#\# search full archive
-\end{itemize}
-
-Setup dev env:
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://developer.twitter.com/en/account/environments}{Dev environments --- Twitter Developers}
-\end{itemize}
+\includegraphics{MEDS-demo_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{beg <-}\StringTok{ "2020-05-20"}
-\NormalTok{end <-}\StringTok{ "2020-05-23"}
-
-\NormalTok{tbl <-}\StringTok{ }\KeywordTok{search_fullarchive}\NormalTok{(}
-\NormalTok{  q,}
-  \DataTypeTok{n =} \DecValTok{100}\NormalTok{,}
-  \DataTypeTok{fromDate =}\NormalTok{ beg,}
-  \DataTypeTok{toDate =}\NormalTok{ end,}
-  \DataTypeTok{env_name =} \StringTok{"research"}\NormalTok{)}
-
-  \CommentTok{# safedir = NULL,}
-  \CommentTok{# parse = TRUE,}
-  \CommentTok{# token = NULL}
-  \CommentTok{# point_radius:[lon lat radius])}
-
-\KeywordTok{table}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(tbl}\OperatorTok{$}\NormalTok{created_at))}
-\KeywordTok{ts_plot}\NormalTok{(tbl)}
-
-    
-\NormalTok{    fromDate, toDate,}
-\OperatorTok{/}\NormalTok{search}\OperatorTok{/}\NormalTok{fullarchive}\OperatorTok{/}\ErrorTok{:}\NormalTok{label.json}
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{na.omit}\NormalTok{(tbl}\OperatorTok{$}\NormalTok{score))}
 \end{Highlighting}
 \end{Shaded}
 
-TODO:
+\begin{verbatim}
+## [1] -0.2354447
+\end{verbatim}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  get sentiment per tweet by tallying negative \& positive
-\item
-  join back to tweets
-\item
-  get over time
-\end{enumerate}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(tbl)}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{tensorflow}{%
-\section{TensorFlow}\label{tensorflow}}
+\begin{verbatim}
+## [1] 607
+\end{verbatim}
 
-\begin{itemize}
-\item
-  datasets to train on:
+\hypertarget{test-dataset}{%
+\section{Test dataset}\label{test-dataset}}
 
-  \begin{itemize}
-  \item
-    Sentiment140
-  \item
-    \texttt{dictionary.txt} in \href{https://towardsdatascience.com/sentiment-analysis-for-text-with-deep-learning-2f0a0c6472b5}{Sentiment analysis for text with Deep Learning - Towards Data Science} from \url{https://nlp.stanford.edu/sentiment/}
-  \item
-    \href{https://www.ahmedbesbes.com/blog/sentiment-analysis-with-keras-and-word-2-vec}{Sentiment analysis 👍 👎 on Twitter using Word2vec and Keras \textbar{} Ahmed BESBES}:
-    "The dataset can be downloaded from this \href{https://drive.google.com/uc?id=0B04GJPshIjmPRnZManQwWEdTZjg\&export=download}{link}. It's a csv file that contains \textbf{1.6 million rows}. Each row has amongst other things the text of the tweet and the corresponding sentiment.
-  \end{itemize}
-\item
-  \href{https://tfhub.dev/digitalepidemiologylab/covid-twitter-bert/1}{covid-twitter-bert \textbar{} TensorFlow Hub}
-\item
-  \href{https://www.kaggle.com/kazanova/sentiment140}{Sentiment140 dataset with 1.6 million tweets \textbar{} Kaggle}
-\item
-  \url{http://help.sentiment140.com/}
-  Sentiment140 allows you to discover the sentiment of a brand, product, or topic on Twitter.
+\href{http://help.sentiment140.com/for-students}{For Academics - Sentiment140 - A Twitter Sentiment Analysis Tool}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    \url{http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip}
-  \end{itemize}
-\end{itemize}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test_csv <-}\StringTok{ }\KeywordTok{here}\NormalTok{(}\StringTok{"data/sentiment140_testdata.manual.2009.06.14.csv"}\NormalTok{)}
+\NormalTok{test <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}
+\NormalTok{  test_csv, }\DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}
+    \StringTok{"polarity"}\NormalTok{, }\StringTok{"status_id"}\NormalTok{, }\StringTok{"created_at"}\NormalTok{, }\StringTok{"query"}\NormalTok{, }\StringTok{"screen_name"}\NormalTok{, }\StringTok{"text"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \CommentTok{# convert negative 0 -> -1, neutral 2 -> 0, positive 4 -> 1  }
+    \DataTypeTok{polarity =} \KeywordTok{recode}\NormalTok{(polarity, }\StringTok{`}\DataTypeTok{0}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{-1}\NormalTok{, }\StringTok{`}\DataTypeTok{2}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{`}\DataTypeTok{4}\StringTok{`}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{))}
 
-\hypertarget{tfhub}{%
-\section{tfhub}\label{tfhub}}
+\CommentTok{# clean out non-ascii, twitter handles, and urls}
+\NormalTok{test <-}\StringTok{ }\NormalTok{test }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{text_clean =}\NormalTok{ text }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{"[^[:ascii:]]"}\NormalTok{, }\StringTok{"_"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{tolower}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{"@[^ ]+"}\NormalTok{, }\StringTok{"_usr_"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{str_replace_all}\NormalTok{(}\StringTok{"http[^ ]+"}\NormalTok{, }\StringTok{"_url_"}\NormalTok{))}
+
+\CommentTok{# tweets to words}
+\NormalTok{words <-}\StringTok{ }\NormalTok{test }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(status_id, created_at, screen_name, text_clean) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unnest_tokens}\NormalTok{(}\DataTypeTok{output =}\NormalTok{ word, }\DataTypeTok{input =}\NormalTok{ text_clean, }\DataTypeTok{token =} \StringTok{"words"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{anti_join}\NormalTok{(stop_words, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(s_b, }\DataTypeTok{by =} \StringTok{"word"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(}
+    \KeywordTok{tribble}\NormalTok{(}
+      \OperatorTok{~}\NormalTok{sentiment, }\OperatorTok{~}\NormalTok{score,}
+      \StringTok{"positive"}\NormalTok{, }\DecValTok{1}\NormalTok{,}
+      \StringTok{"negative"}\NormalTok{, }\DecValTok{-1}\NormalTok{),}
+    \DataTypeTok{by =} \StringTok{"sentiment"}\NormalTok{)}
+
+\CommentTok{# tally score per tweet}
+\NormalTok{test <-}\StringTok{ }\NormalTok{test }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(}
+\NormalTok{    words }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{group_by}\NormalTok{(status_id) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{summarize}\NormalTok{(}
+        \DataTypeTok{score =} \KeywordTok{mean}\NormalTok{(score, }\DataTypeTok{na.rm =}\NormalTok{ T)),}
+    \DataTypeTok{by =} \StringTok{"status_id"}\NormalTok{)}
+
+\KeywordTok{hist}\NormalTok{(test}\OperatorTok{$}\NormalTok{score)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MEDS-demo_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(test)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 498
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{na.omit}\NormalTok{(test}\OperatorTok{$}\NormalTok{score))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.07255595
+\end{verbatim}
+
+\hypertarget{introducing-tensorflow}{%
+\section{Introducing TensorFlow}\label{introducing-tensorflow}}
 
 \href{https://blogs.rstudio.com/ai/posts/2019-12-18-tfhub-0.7.0/}{RStudio AI Blog: tfhub: R interface to TensorFlow Hub}
 
-you need to install the Python packages once:
+You need to install these Python packages once:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1178,16 +976,41 @@ you need to install the Python packages once:
 \NormalTok{layer_mobilenet <-}\StringTok{ }\KeywordTok{layer_hub}\NormalTok{(}
   \DataTypeTok{handle =} \StringTok{"https://tfhub.dev/google/tf2-preview/mobilenet_v2/classification/4"}\NormalTok{)}
 
-\NormalTok{input <-}\StringTok{ }\KeywordTok{layer_input}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{c}\NormalTok{(}\DecValTok{224}\NormalTok{, }\DecValTok{224}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\NormalTok{input  <-}\StringTok{ }\KeywordTok{layer_input}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{c}\NormalTok{(}\DecValTok{224}\NormalTok{, }\DecValTok{224}\NormalTok{, }\DecValTok{3}\NormalTok{))}
 \NormalTok{output <-}\StringTok{ }\KeywordTok{layer_mobilenet}\NormalTok{(input)}
-\NormalTok{model <-}\StringTok{ }\KeywordTok{keras_model}\NormalTok{(input, output)}
+\NormalTok{model  <-}\StringTok{ }\KeywordTok{keras_model}\NormalTok{(input, output)}
 \KeywordTok{summary}\NormalTok{(model)}
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{\{rv\},\ eval\ =\ Fimg\ \textless{}-\ image\_load("data/grace-hopper.jpg",\ target\_size\ =\ c(224,224))\ \%\textgreater{}\%\ \ \ \ image\_to\_array()\ img\ \textless{}-\ img/255\ dim(img)\ \textless{}-\ c(1,\ dim(img))\ pred\ \textless{}-\ predict(model,\ img)\ imagenet\_decode\_predictions(pred{[},-1,drop=FALSE{]}){[}{[}1{]}{]}}
-``
+The \texttt{layer\_hub()} function above however kept throwing errors like this:
 
-\bibliography{style/zotero\_meds-demo.bib,style/packages.bib}
+\begin{verbatim}
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  OSError: SavedModel file does not exist at: /var/folders/2r/grqvdjfn04361tzk8mh60st40000gn/T/tfhub_modules/426589ad685896ab7954855255a52db3442cb38d/{saved_model.pbtxt|saved_model.pb}
+\end{verbatim}
+
+There's a lot of Python and R communication that can get easily confused between versions. So let's switch to a clean installation by using Docker. \href{https://docs.docker.com/get-docker/}{Install Docker} if you don't already have it.
+
+Then per \href{https://hub.docker.com/r/rocker/tensorflow}{rocker/tensorflow - Docker Hub} run the following to get a clean RStudio instance with all the TensorFlow and Python dependencies properly installed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker}\NormalTok{ run -e PASSWORD=mu -p 8787:8787 rocker/ml}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{img <-}\StringTok{ }\KeywordTok{image_load}\NormalTok{(}\StringTok{"data/grace-hopper.jpg"}\NormalTok{, }\DataTypeTok{target_size =} \KeywordTok{c}\NormalTok{(}\DecValTok{224}\NormalTok{,}\DecValTok{224}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\KeywordTok{image_to_array}\NormalTok{()}
+\NormalTok{img <-}\StringTok{ }\NormalTok{img}\OperatorTok{/}\DecValTok{255}
+\KeywordTok{dim}\NormalTok{(img) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\KeywordTok{dim}\NormalTok{(img))}
+\NormalTok{pred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(model, img)}
+\KeywordTok{imagenet_decode_predictions}\NormalTok{(pred[,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DataTypeTok{drop=}\OtherTok{FALSE}\NormalTok{])[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\bibliography{style/zotero\_meds-demo.bib}
 
 \end{document}
