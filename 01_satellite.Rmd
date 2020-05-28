@@ -112,7 +112,7 @@ href="https://code.earthengine.google.com/?scriptPath=Examples:Datasets/COPERNIC
 
 You should now be seeing the Code Editor. Here are some labels for the user interface to orient yourself:
 
-![Credit: [Google Earth Engine: Code Editor](images/gee_02_codeeditor.png)
+![Credit: [GeoHackWeek - Google Earth Engine: Code Editor](https://geohackweek.github.io/GoogleEarthEngine/02-code-editor/)](images/gee_02_codeeditor.png)
 
 Click **Run** to run the script. Voila! You should see tiles of the satellite data layer appear in the lower Map pane:
 
