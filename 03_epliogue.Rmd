@@ -1,0 +1,7 @@
+# Epilogue {-}
+
+This website was generated using [bookdown](https://github.com/rstudio/bookdown). The source code can be found (and forked for your own manipulation) here:
+
+https://github.com/bbest/meds-demo
+
+## References {-}
