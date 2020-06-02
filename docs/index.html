@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Clean Air in the Time of COVID</title>
   <meta name="description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Clean Air in the Time of COVID" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Ben Best, PhD" />
 
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2020-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,12 +50,19 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +71,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +89,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -172,32 +181,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.10" data-path="satellite.html"><a href="satellite.html#create-time-series-chart"><i class="fa fa-check"></i><b>1.10</b> Create time series chart</a></li>
 <li class="chapter" data-level="1.11" data-path="satellite.html"><a href="satellite.html#expand-dates-to-all-available"><i class="fa fa-check"></i><b>1.11</b> Expand dates to all available</a></li>
 <li class="chapter" data-level="1.12" data-path="satellite.html"><a href="satellite.html#download-csv"><i class="fa fa-check"></i><b>1.12</b> Download CSV</a></li>
-<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
 <li class="chapter" data-level="1.13" data-path="satellite.html"><a href="satellite.html#your-turn"><i class="fa fa-check"></i><b>1.13</b> Your Turn</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
 <li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#further-resources"><i class="fa fa-check"></i>Further Resources</a><ul>
 <li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#google-earth-engine"><i class="fa fa-check"></i>Google Earth Engine</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="sentiment.html"><a href="sentiment.html"><i class="fa fa-check"></i><b>2</b> Sentiment</a><ul>
-<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#status-not-ready"><i class="fa fa-check"></i>STATUS: NOT READY</a></li>
 <li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#objectives-1"><i class="fa fa-check"></i>Objectives</a><ul>
 <li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#question-1"><i class="fa fa-check"></i>Question</a></li>
 <li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#technical-motivation"><i class="fa fa-check"></i>Technical Motivation</a></li>
 <li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#approach"><i class="fa fa-check"></i>Approach</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="2.1" data-path="sentiment.html"><a href="sentiment.html#setup-twitter-token"><i class="fa fa-check"></i><b>2.1</b> Setup Twitter token</a></li>
-<li class="chapter" data-level="2.2" data-path="sentiment.html"><a href="sentiment.html#load-r-packages"><i class="fa fa-check"></i><b>2.2</b> Load R packages</a></li>
-<li class="chapter" data-level="2.3" data-path="sentiment.html"><a href="sentiment.html#search-twitter"><i class="fa fa-check"></i><b>2.3</b> Search Twitter</a></li>
-<li class="chapter" data-level="2.4" data-path="sentiment.html"><a href="sentiment.html#calculate-dictionary-score"><i class="fa fa-check"></i><b>2.4</b> Calculate dictionary score</a></li>
-<li class="chapter" data-level="2.5" data-path="sentiment.html"><a href="sentiment.html#twitter-test-dataset"><i class="fa fa-check"></i><b>2.5</b> Twitter test dataset</a></li>
-<li class="chapter" data-level="2.6" data-path="sentiment.html"><a href="sentiment.html#introducing-tensorflow"><i class="fa fa-check"></i><b>2.6</b> Introducing TensorFlow</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="sentiment.html"><a href="sentiment.html#text-classification"><i class="fa fa-check"></i><b>2.6.1</b> Text classification</a></li>
-<li class="chapter" data-level="2.6.2" data-path="sentiment.html"><a href="sentiment.html#not-working-on-bens-laptop-trained-model-on-image-classification"><i class="fa fa-check"></i><b>2.6.2</b> not working on Ben’s laptop: trained model on image classification</a></li>
+<li class="chapter" data-level="2.1" data-path="sentiment.html"><a href="sentiment.html#load-r-packages"><i class="fa fa-check"></i><b>2.1</b> Load R packages</a></li>
+<li class="chapter" data-level="2.2" data-path="sentiment.html"><a href="sentiment.html#setup-twitter"><i class="fa fa-check"></i><b>2.2</b> Setup Twitter</a></li>
+<li class="chapter" data-level="2.3" data-path="sentiment.html"><a href="sentiment.html#define-queries-for-air-quality-and-clean-energy"><i class="fa fa-check"></i><b>2.3</b> Define queries for air quality and clean energy</a></li>
+<li class="chapter" data-level="2.4" data-path="sentiment.html"><a href="sentiment.html#define-spatial-and-temporal-extent"><i class="fa fa-check"></i><b>2.4</b> Define spatial and temporal extent</a></li>
+<li class="chapter" data-level="2.5" data-path="sentiment.html"><a href="sentiment.html#get-tweets-iterating-over-queries-months"><i class="fa fa-check"></i><b>2.5</b> Get tweets, iterating over queries &amp; months</a></li>
+<li class="chapter" data-level="2.6" data-path="sentiment.html"><a href="sentiment.html#classify-sentiment-of-tweets-over-time-using-lexicon"><i class="fa fa-check"></i><b>2.6</b> Classify sentiment of tweets over time, using lexicon</a></li>
+<li class="chapter" data-level="2.7" data-path="sentiment.html"><a href="sentiment.html#twitter-sentiment140-dataset"><i class="fa fa-check"></i><b>2.7</b> Twitter Sentiment140 dataset</a></li>
+<li class="chapter" data-level="2.8" data-path="sentiment.html"><a href="sentiment.html#train-tensorflow-model-with-sentiment140"><i class="fa fa-check"></i><b>2.8</b> Train TensorFlow model with Sentiment140</a></li>
+<li class="chapter" data-level="2.9" data-path="sentiment.html"><a href="sentiment.html#classify-sentiment-of-tweets-over-time-using-tensorflow"><i class="fa fa-check"></i><b>2.9</b> Classify sentiment of tweets over time, using TensorFlow</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i>Epilogue</a><ul>
-<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="3" data-path="integration.html"><a href="integration.html"><i class="fa fa-check"></i><b>3</b> Integration</a><ul>
+<li class="chapter" data-level="3.1" data-path="integration.html"><a href="integration.html#time-series-plot-of-satellite-sentiment-metrics"><i class="fa fa-check"></i><b>3.1</b> Time series plot of satellite &amp; sentiment metrics</a></li>
+<li class="chapter" data-level="3.2" data-path="integration.html"><a href="integration.html#box-plot-of-satellite-sentiment-metrics-beforeafter-lockdown"><i class="fa fa-check"></i><b>3.2</b> Box plot of satellite &amp; sentiment metrics before/after lockdown</a></li>
+<li class="chapter" data-level="" data-path="integration.html"><a href="integration.html#references"><i class="fa fa-check"></i>References</a></li>
 </ul></li>
 </ul>
 
@@ -220,17 +230,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Clean Air in the Time of COVID</h1>
 <h2 class="subtitle"><em>Use Cases for Satellite &amp; Sentiment Analysis</em></h2>
 <p class="author"><em>Ben Best, PhD</em></p>
-<p class="date"><em>2020-06-01</em></p>
+<p class="date"><em>2020-06-02</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered">
 <h1>Overview</h1>
-<p>These materials are for a 45 minute teaching demonstration on 2020-05-26 oriented towards students in the new Masters in Environmental Data Science at UCSB.</p>
+<p>These materials are for a 45 minute teaching demonstration that was on 2020-05-26 oriented towards students in the new Masters in Environmental Data Science at UCSB.</p>
 <div id="motivation" class="section level2 unnumbered objectives">
 <h2>Motivation</h2>
 <p>This is an exciting time for the emerging field of Environmental Data Science. Environmental problems are increasingly complex and require advanced technical skills to translate the ever expanding flow of data into actionable insights.</p>
 <div id="technologies" class="section level3 unnumbered">
 <h3>Technologies</h3>
-<p>The two specific technologies featured in this teaching demonstration highlight some of the most promising technologies to demonstrate big data and machine learning:</p>
+<p>The two specific technologies featured in this teaching demonstration highlight a couple of the most promising techniques to demonstrate big data and machine learning:</p>
 <ul>
 <li><p><strong>BIG DATA: Google Earth Engine (satellite)</strong> leverages the massive storage and computational capabilities of the Google Cloud to analyze petabytes of the publicly available satellite data. For instance, global climatologies averaging across 40 years of temperature can be calculated and mapped in seconds. This is a truly <em>big data</em> platform!</p></li>
 <li><p><strong>MACHINE LEARNING: TensorFlow (sentiment)</strong> is the machine learning software made open-source by Google. It is the most commonly used software for audio, text and image analysis. More specifically tensorflow allows construction of <em>convolutional neural networks</em>, which represent a layering of nodes to enable complex pattern matching. These <em>deep learning</em> models have been popularized by their ability to beat the best human at the most complex game of Go, self-drive vehicles, Netflix recommendations, Spotify playlists and respond to your beck and call through Alexa’s voice commands.</p></li>
@@ -238,6 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="motivating-use-case" class="section level3 unnumbered">
 <h3>Motivating Use Case</h3>
+<p>The improvement in air quality since COVID-19 lockdown was newsworthy. This lab uses cutting edge environmental data science tools to evaluate the physical description and social reaction of this natural experiment.</p>
 <blockquote class="twitter-tweet">
 <p lang="en" dir="ltr">
 For the first time in decades, Mount Everest was visible from Kathmandu due to improved air quality.

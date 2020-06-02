@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 3 Integration | Clean Air in the Time of COVID</title>
+  <meta name="description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 3 Integration | Clean Air in the Time of COVID" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  <meta name="github-repo" content="bbest/meds-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 3 Integration | Clean Air in the Time of COVID" />
+  
+  <meta name="twitter:description" content="These materials are for a 45 minute teaching demonstration oriented towards students in the new Masters in Environmental Data Science at UCSB." />
+  
+
+<meta name="author" content="Ben Best, PhD" />
+
+
+<meta name="date" content="2020-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sentiment.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+<link rel="stylesheet" href="style/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MEDS demo</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivation"><i class="fa fa-check"></i>Motivation</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#technologies"><i class="fa fa-check"></i>Technologies</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#motivating-use-case"><i class="fa fa-check"></i>Motivating Use Case</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html#apply-for-accounts"><i class="fa fa-check"></i><b>0.1</b> Apply for accounts</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="setup.html"><a href="setup.html#google-earth-engine-gee-account"><i class="fa fa-check"></i><b>0.1.1</b> Google Earth Engine (GEE) account</a></li>
+<li class="chapter" data-level="0.1.2" data-path="setup.html"><a href="setup.html#twitter-developer-account"><i class="fa fa-check"></i><b>0.1.2</b> Twitter developer account</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="setup.html"><a href="setup.html#install-software"><i class="fa fa-check"></i><b>0.2</b> Install software</a></li>
+<li class="chapter" data-level="0.3" data-path="setup.html"><a href="setup.html#launch-rstudio"><i class="fa fa-check"></i><b>0.3</b> Launch RStudio</a></li>
+<li class="chapter" data-level="0.4" data-path="setup.html"><a href="setup.html#fork-and-clone-the-github-repository"><i class="fa fa-check"></i><b>0.4</b> Fork and Clone the Github Repository</a></li>
+<li class="chapter" data-level="0.5" data-path="setup.html"><a href="setup.html#install-r-packages"><i class="fa fa-check"></i><b>0.5</b> Install R Packages</a></li>
+<li class="chapter" data-level="0.6" data-path="setup.html"><a href="setup.html#create-rmarkdown-file"><i class="fa fa-check"></i><b>0.6</b> Create Rmarkdown file</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="satellite.html"><a href="satellite.html"><i class="fa fa-check"></i><b>1</b> Satellite</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#objectives"><i class="fa fa-check"></i>Objectives</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#question"><i class="fa fa-check"></i>Question</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#study-area-delhi-india"><i class="fa fa-check"></i>Study area: Delhi, India</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#learning-outcomes"><i class="fa fa-check"></i>Learning outcomes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#prerequisites-1"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="1.1" data-path="satellite.html"><a href="satellite.html#get-city-boundary"><i class="fa fa-check"></i><b>1.1</b> Get city boundary</a></li>
+<li class="chapter" data-level="1.2" data-path="satellite.html"><a href="satellite.html#browse-datasets-tag-no2"><i class="fa fa-check"></i><b>1.2</b> Browse datasets, tag no2</a></li>
+<li class="chapter" data-level="1.3" data-path="satellite.html"><a href="satellite.html#view-dataset-info"><i class="fa fa-check"></i><b>1.3</b> View dataset info</a></li>
+<li class="chapter" data-level="1.4" data-path="satellite.html"><a href="satellite.html#questions"><i class="fa fa-check"></i><b>1.4</b> Questions</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="satellite.html"><a href="satellite.html#answers"><i class="fa fa-check"></i><b>1.4.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="satellite.html"><a href="satellite.html#launch-code-editor-with-dataset"><i class="fa fa-check"></i><b>1.5</b> Launch Code Editor with dataset</a></li>
+<li class="chapter" data-level="1.6" data-path="satellite.html"><a href="satellite.html#run-the-initial-dataset-script"><i class="fa fa-check"></i><b>1.6</b> Run the initial dataset script</a></li>
+<li class="chapter" data-level="1.7" data-path="satellite.html"><a href="satellite.html#modify-the-script-so-satellite-layer-is-semi-transparent"><i class="fa fa-check"></i><b>1.7</b> Modify the script so satellite layer is semi-transparent</a></li>
+<li class="chapter" data-level="1.8" data-path="satellite.html"><a href="satellite.html#add-city-polygon-asset"><i class="fa fa-check"></i><b>1.8</b> Add city polygon asset</a></li>
+<li class="chapter" data-level="1.9" data-path="satellite.html"><a href="satellite.html#add-to-city-to-map"><i class="fa fa-check"></i><b>1.9</b> Add to city to map</a></li>
+<li class="chapter" data-level="1.10" data-path="satellite.html"><a href="satellite.html#create-time-series-chart"><i class="fa fa-check"></i><b>1.10</b> Create time series chart</a></li>
+<li class="chapter" data-level="1.11" data-path="satellite.html"><a href="satellite.html#expand-dates-to-all-available"><i class="fa fa-check"></i><b>1.11</b> Expand dates to all available</a></li>
+<li class="chapter" data-level="1.12" data-path="satellite.html"><a href="satellite.html#download-csv"><i class="fa fa-check"></i><b>1.12</b> Download CSV</a></li>
+<li class="chapter" data-level="1.13" data-path="satellite.html"><a href="satellite.html#your-turn"><i class="fa fa-check"></i><b>1.13</b> Your Turn</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#conclusions"><i class="fa fa-check"></i>Conclusions</a></li>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#further-resources"><i class="fa fa-check"></i>Further Resources</a><ul>
+<li class="chapter" data-level="" data-path="satellite.html"><a href="satellite.html#google-earth-engine"><i class="fa fa-check"></i>Google Earth Engine</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="sentiment.html"><a href="sentiment.html"><i class="fa fa-check"></i><b>2</b> Sentiment</a><ul>
+<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#objectives-1"><i class="fa fa-check"></i>Objectives</a><ul>
+<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#question-1"><i class="fa fa-check"></i>Question</a></li>
+<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#technical-motivation"><i class="fa fa-check"></i>Technical Motivation</a></li>
+<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#approach"><i class="fa fa-check"></i>Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="sentiment.html"><a href="sentiment.html#prerequisites-2"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="2.1" data-path="sentiment.html"><a href="sentiment.html#load-r-packages"><i class="fa fa-check"></i><b>2.1</b> Load R packages</a></li>
+<li class="chapter" data-level="2.2" data-path="sentiment.html"><a href="sentiment.html#setup-twitter"><i class="fa fa-check"></i><b>2.2</b> Setup Twitter</a></li>
+<li class="chapter" data-level="2.3" data-path="sentiment.html"><a href="sentiment.html#define-queries-for-air-quality-and-clean-energy"><i class="fa fa-check"></i><b>2.3</b> Define queries for air quality and clean energy</a></li>
+<li class="chapter" data-level="2.4" data-path="sentiment.html"><a href="sentiment.html#define-spatial-and-temporal-extent"><i class="fa fa-check"></i><b>2.4</b> Define spatial and temporal extent</a></li>
+<li class="chapter" data-level="2.5" data-path="sentiment.html"><a href="sentiment.html#get-tweets-iterating-over-queries-months"><i class="fa fa-check"></i><b>2.5</b> Get tweets, iterating over queries &amp; months</a></li>
+<li class="chapter" data-level="2.6" data-path="sentiment.html"><a href="sentiment.html#classify-sentiment-of-tweets-over-time-using-lexicon"><i class="fa fa-check"></i><b>2.6</b> Classify sentiment of tweets over time, using lexicon</a></li>
+<li class="chapter" data-level="2.7" data-path="sentiment.html"><a href="sentiment.html#twitter-sentiment140-dataset"><i class="fa fa-check"></i><b>2.7</b> Twitter Sentiment140 dataset</a></li>
+<li class="chapter" data-level="2.8" data-path="sentiment.html"><a href="sentiment.html#train-tensorflow-model-with-sentiment140"><i class="fa fa-check"></i><b>2.8</b> Train TensorFlow model with Sentiment140</a></li>
+<li class="chapter" data-level="2.9" data-path="sentiment.html"><a href="sentiment.html#classify-sentiment-of-tweets-over-time-using-tensorflow"><i class="fa fa-check"></i><b>2.9</b> Classify sentiment of tweets over time, using TensorFlow</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="integration.html"><a href="integration.html"><i class="fa fa-check"></i><b>3</b> Integration</a><ul>
+<li class="chapter" data-level="3.1" data-path="integration.html"><a href="integration.html#time-series-plot-of-satellite-sentiment-metrics"><i class="fa fa-check"></i><b>3.1</b> Time series plot of satellite &amp; sentiment metrics</a></li>
+<li class="chapter" data-level="3.2" data-path="integration.html"><a href="integration.html#box-plot-of-satellite-sentiment-metrics-beforeafter-lockdown"><i class="fa fa-check"></i><b>3.2</b> Box plot of satellite &amp; sentiment metrics before/after lockdown</a></li>
+<li class="chapter" data-level="" data-path="integration.html"><a href="integration.html#references"><i class="fa fa-check"></i>References</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Clean Air in the Time of COVID</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="integration" class="section level1">
+<h1><span class="header-section-number">Lesson 3</span> Integration</h1>
+<div id="time-series-plot-of-satellite-sentiment-metrics" class="section level2">
+<h2><span class="header-section-number">3.1</span> Time series plot of satellite &amp; sentiment metrics</h2>
+<p>Let’s now integrate data from satellite and sentiment into the same monthly time series plot, first rescaling all metrics -1 to 1 for comparison.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="integration.html#cb36-1"></a><span class="kw">library</span>(here)</span>
+<span id="cb36-2"><a href="integration.html#cb36-2"></a><span class="kw">library</span>(glue)</span>
+<span id="cb36-3"><a href="integration.html#cb36-3"></a><span class="kw">library</span>(readr)</span>
+<span id="cb36-4"><a href="integration.html#cb36-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb36-5"><a href="integration.html#cb36-5"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb36-6"><a href="integration.html#cb36-6"></a><span class="kw">library</span>(scales)</span>
+<span id="cb36-7"><a href="integration.html#cb36-7"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb36-8"><a href="integration.html#cb36-8"></a><span class="kw">library</span>(plotly)</span>
+<span id="cb36-9"><a href="integration.html#cb36-9"></a></span>
+<span id="cb36-10"><a href="integration.html#cb36-10"></a><span class="co"># paths</span></span>
+<span id="cb36-11"><a href="integration.html#cb36-11"></a>loc_name       &lt;-<span class="st"> &quot;delhi&quot;</span></span>
+<span id="cb36-12"><a href="integration.html#cb36-12"></a>satellite_csv  &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="kw">glue</span>(<span class="st">&quot;data/no2_{loc_name}_ee-chart.csv&quot;</span>))</span>
+<span id="cb36-13"><a href="integration.html#cb36-13"></a>sentiments_csv &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="kw">glue</span>(<span class="st">&quot;data/sentiments_{loc_name}.csv&quot;</span>))</span>
+<span id="cb36-14"><a href="integration.html#cb36-14"></a>metrics_csv    &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="kw">glue</span>(<span class="st">&quot;data/metrics_{loc_name}.csv&quot;</span>))</span>
+<span id="cb36-15"><a href="integration.html#cb36-15"></a></span>
+<span id="cb36-16"><a href="integration.html#cb36-16"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(metrics_csv)){</span>
+<span id="cb36-17"><a href="integration.html#cb36-17"></a>  satellite  &lt;-<span class="st"> </span><span class="kw">read_csv</span>(satellite_csv) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-18"><a href="integration.html#cb36-18"></a><span class="st">    </span><span class="kw">transmute</span>(</span>
+<span id="cb36-19"><a href="integration.html#cb36-19"></a>      <span class="dt">date    =</span> <span class="kw">mdy</span>(<span class="st">`</span><span class="dt">system:time_start</span><span class="st">`</span>),</span>
+<span id="cb36-20"><a href="integration.html#cb36-20"></a>      <span class="dt">date_ym =</span> <span class="kw">floor_date</span>(date, <span class="dt">unit =</span> <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb36-21"><a href="integration.html#cb36-21"></a>      <span class="dt">no2     =</span> NO2_column_number_density) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-22"><a href="integration.html#cb36-22"></a><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(no2)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-23"><a href="integration.html#cb36-23"></a><span class="st">    </span><span class="kw">group_by</span>(date_ym) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-24"><a href="integration.html#cb36-24"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb36-25"><a href="integration.html#cb36-25"></a>      <span class="dt">no2 =</span> <span class="kw">mean</span>(no2, <span class="dt">na.rm=</span>T)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-26"><a href="integration.html#cb36-26"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb36-27"><a href="integration.html#cb36-27"></a>      <span class="dt">metric =</span> <span class="st">&quot;NO2&quot;</span>,</span>
+<span id="cb36-28"><a href="integration.html#cb36-28"></a>      <span class="dt">value  =</span> <span class="kw">rescale</span>(no2, <span class="dt">to =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-29"><a href="integration.html#cb36-29"></a><span class="st">    </span><span class="kw">select</span>(metric, date_ym, value)</span>
+<span id="cb36-30"><a href="integration.html#cb36-30"></a>  </span>
+<span id="cb36-31"><a href="integration.html#cb36-31"></a>  sentiments &lt;-<span class="st"> </span><span class="kw">read_csv</span>(sentiments_csv) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-32"><a href="integration.html#cb36-32"></a><span class="st">    </span><span class="kw">rename</span>(<span class="dt">date_ym =</span> ym_date) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-33"><a href="integration.html#cb36-33"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb36-34"><a href="integration.html#cb36-34"></a>      <span class="dt">metric =</span> <span class="kw">glue</span>(<span class="st">&quot;{query_name}&quot;</span>),</span>
+<span id="cb36-35"><a href="integration.html#cb36-35"></a>      <span class="dt">value  =</span> <span class="kw">rescale</span>(tf_score, <span class="dt">to =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-36"><a href="integration.html#cb36-36"></a><span class="st">    </span><span class="kw">select</span>(metric, date_ym, value)</span>
+<span id="cb36-37"><a href="integration.html#cb36-37"></a>  </span>
+<span id="cb36-38"><a href="integration.html#cb36-38"></a>  <span class="kw">bind_rows</span>(</span>
+<span id="cb36-39"><a href="integration.html#cb36-39"></a>    satellite,</span>
+<span id="cb36-40"><a href="integration.html#cb36-40"></a>    sentiments) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-41"><a href="integration.html#cb36-41"></a><span class="st">    </span><span class="kw">write_csv</span>(metrics_csv)</span>
+<span id="cb36-42"><a href="integration.html#cb36-42"></a>}</span>
+<span id="cb36-43"><a href="integration.html#cb36-43"></a>metrics &lt;-<span class="st"> </span><span class="kw">read_csv</span>(metrics_csv)</span>
+<span id="cb36-44"><a href="integration.html#cb36-44"></a></span>
+<span id="cb36-45"><a href="integration.html#cb36-45"></a>g &lt;-<span class="st"> </span>metrics <span class="op">%&gt;%</span></span>
+<span id="cb36-46"><a href="integration.html#cb36-46"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb36-47"><a href="integration.html#cb36-47"></a>    <span class="kw">aes</span>(<span class="dt">x =</span> date_ym, <span class="dt">y =</span> value, <span class="dt">color =</span> metric)) <span class="op">+</span></span>
+<span id="cb36-48"><a href="integration.html#cb36-48"></a><span class="st">  </span><span class="kw">geom_line</span>()</span>
+<span id="cb36-49"><a href="integration.html#cb36-49"></a><span class="kw">ggplotly</span>(g)</span></code></pre></div>
+<div id="htmlwidget-8c3b1a9cfb5012219a10" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c3b1a9cfb5012219a10">{"x":{"data":[{"x":[17713,17744,17775,17805,17836,17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383],"y":[0.0247492519110586,-0.898809853479892,-0.0369119651817734,-1,-0.0726863440289106,-0.210768098367731,-0.379511732270675,-0.382196973309204,-0.00209722991749262,-0.251355553690557,-0.0912599957266809,0.00938948126353667,0.103228847424852,-0.0172444412239499,-0.00156086451430892,-0.118424592350729,-0.223293779040194,-0.415571065216578,-0.193810546465419,-0.0215783237522346,0.0377308292214533,-0.0797742715784844,0.0541797372763408],"text":["date_ym: 2018-07-01<br />value:  0.024749252<br />metric: air","date_ym: 2018-08-01<br />value: -0.898809853<br />metric: air","date_ym: 2018-09-01<br />value: -0.036911965<br />metric: air","date_ym: 2018-10-01<br />value: -1.000000000<br />metric: air","date_ym: 2018-11-01<br />value: -0.072686344<br />metric: air","date_ym: 2018-12-01<br />value: -0.210768098<br />metric: air","date_ym: 2019-01-01<br />value: -0.379511732<br />metric: air","date_ym: 2019-02-01<br />value: -0.382196973<br />metric: air","date_ym: 2019-03-01<br />value: -0.002097230<br />metric: air","date_ym: 2019-04-01<br />value: -0.251355554<br />metric: air","date_ym: 2019-05-01<br />value: -0.091259996<br />metric: air","date_ym: 2019-06-01<br />value:  0.009389481<br />metric: air","date_ym: 2019-07-01<br />value:  0.103228847<br />metric: air","date_ym: 2019-08-01<br />value: -0.017244441<br />metric: air","date_ym: 2019-09-01<br />value: -0.001560865<br />metric: air","date_ym: 2019-10-01<br />value: -0.118424592<br />metric: air","date_ym: 2019-11-01<br />value: -0.223293779<br />metric: air","date_ym: 2019-12-01<br />value: -0.415571065<br />metric: air","date_ym: 2020-01-01<br />value: -0.193810546<br />metric: air","date_ym: 2020-02-01<br />value: -0.021578324<br />metric: air","date_ym: 2020-03-01<br />value:  0.037730829<br />metric: air","date_ym: 2020-04-01<br />value: -0.079774272<br />metric: air","date_ym: 2020-05-01<br />value:  0.054179737<br />metric: air"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"air","legendgroup":"air","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17713,17744,17775,17805,17836,17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383],"y":[0.0393535205650222,0.624951046489969,0.53803912541112,0.535178013911631,0.895008443769338,0.530557244620514,0.713636663690875,1,0.350708942226448,0.33625980592387,0.527254392895791,0.641276545378375,0.52824806979376,0.531244217093538,0.762164316206393,0.41522521413914,0.583047197990763,0.44314391544039,0.566907788300689,0.399526614088099,0.455726320915531,0.4012131020935,0.489363606310985],"text":["date_ym: 2018-07-01<br />value:  0.039353521<br />metric: energy","date_ym: 2018-08-01<br />value:  0.624951046<br />metric: energy","date_ym: 2018-09-01<br />value:  0.538039125<br />metric: energy","date_ym: 2018-10-01<br />value:  0.535178014<br />metric: energy","date_ym: 2018-11-01<br />value:  0.895008444<br />metric: energy","date_ym: 2018-12-01<br />value:  0.530557245<br />metric: energy","date_ym: 2019-01-01<br />value:  0.713636664<br />metric: energy","date_ym: 2019-02-01<br />value:  1.000000000<br />metric: energy","date_ym: 2019-03-01<br />value:  0.350708942<br />metric: energy","date_ym: 2019-04-01<br />value:  0.336259806<br />metric: energy","date_ym: 2019-05-01<br />value:  0.527254393<br />metric: energy","date_ym: 2019-06-01<br />value:  0.641276545<br />metric: energy","date_ym: 2019-07-01<br />value:  0.528248070<br />metric: energy","date_ym: 2019-08-01<br />value:  0.531244217<br />metric: energy","date_ym: 2019-09-01<br />value:  0.762164316<br />metric: energy","date_ym: 2019-10-01<br />value:  0.415225214<br />metric: energy","date_ym: 2019-11-01<br />value:  0.583047198<br />metric: energy","date_ym: 2019-12-01<br />value:  0.443143915<br />metric: energy","date_ym: 2020-01-01<br />value:  0.566907788<br />metric: energy","date_ym: 2020-02-01<br />value:  0.399526614<br />metric: energy","date_ym: 2020-03-01<br />value:  0.455726321<br />metric: energy","date_ym: 2020-04-01<br />value:  0.401213102<br />metric: energy","date_ym: 2020-05-01<br />value:  0.489363606<br />metric: energy"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,186,56,1)","dash":"solid"},"hoveron":"points","name":"energy","legendgroup":"energy","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17713,17744,17775,17805,17836,17866,17897,17928,17956,17987,18017,18048,18078,18109,18140,18170,18201,18231,18262,18293,18322,18353,18383],"y":[-0.29452520477871,-0.672279350784871,-0.552670487044172,0.48893128790932,0.570332409844178,0.735139160269474,1,0.279259882798588,-0.500322808567854,-0.198044484734678,-0.306069590072569,-0.257959278508567,-0.427712306148218,-0.639177102272631,-0.39698162426171,-0.321414391679007,0.0082720885809564,0.84640787386279,0.166473181042417,-0.244371712724094,-0.487368913664766,-1,-0.760352251756402],"text":["date_ym: 2018-07-01<br />value: -0.294525205<br />metric: NO2","date_ym: 2018-08-01<br />value: -0.672279351<br />metric: NO2","date_ym: 2018-09-01<br />value: -0.552670487<br />metric: NO2","date_ym: 2018-10-01<br />value:  0.488931288<br />metric: NO2","date_ym: 2018-11-01<br />value:  0.570332410<br />metric: NO2","date_ym: 2018-12-01<br />value:  0.735139160<br />metric: NO2","date_ym: 2019-01-01<br />value:  1.000000000<br />metric: NO2","date_ym: 2019-02-01<br />value:  0.279259883<br />metric: NO2","date_ym: 2019-03-01<br />value: -0.500322809<br />metric: NO2","date_ym: 2019-04-01<br />value: -0.198044485<br />metric: NO2","date_ym: 2019-05-01<br />value: -0.306069590<br />metric: NO2","date_ym: 2019-06-01<br />value: -0.257959279<br />metric: NO2","date_ym: 2019-07-01<br />value: -0.427712306<br />metric: NO2","date_ym: 2019-08-01<br />value: -0.639177102<br />metric: NO2","date_ym: 2019-09-01<br />value: -0.396981624<br />metric: NO2","date_ym: 2019-10-01<br />value: -0.321414392<br />metric: NO2","date_ym: 2019-11-01<br />value:  0.008272089<br />metric: NO2","date_ym: 2019-12-01<br />value:  0.846407874<br />metric: NO2","date_ym: 2020-01-01<br />value:  0.166473181<br />metric: NO2","date_ym: 2020-02-01<br />value: -0.244371713<br />metric: NO2","date_ym: 2020-03-01<br />value: -0.487368914<br />metric: NO2","date_ym: 2020-04-01<br />value: -1.000000000<br />metric: NO2","date_ym: 2020-05-01<br />value: -0.760352252<br />metric: NO2"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(97,156,255,1)","dash":"solid"},"hoveron":"points","name":"NO2","legendgroup":"NO2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":48.9497716894977},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17679.5,18416.5],"tickmode":"array","ticktext":["2018-07","2019-01","2019-07","2020-01"],"tickvals":[17713,17897,18078,18262],"categoryorder":"array","categoryarray":["2018-07","2019-01","2019-07","2020-01"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"date_ym","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.1,1.1],"tickmode":"array","ticktext":["-1.0","-0.5","0.0","0.5","1.0"],"tickvals":[-1,-0.5,0,0.5,1],"categoryorder":"array","categoryarray":["-1.0","-0.5","0.0","0.5","1.0"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"value","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.913385826771654},"annotations":[{"text":"metric","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"537577e8acdd":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"537577e8acdd","visdat":{"537577e8acdd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Interesting! The air quality sentiment (red line) does seem to be inversely correlated with nitrogen dioxide (NO<sub>2</sub>; blue line). The sentiment for clean energy (green line) seems to correlate with satellite NO2 until 2019-03 then remains relatively steady.</p>
+</div>
+<div id="box-plot-of-satellite-sentiment-metrics-beforeafter-lockdown" class="section level2">
+<h2><span class="header-section-number">3.2</span> Box plot of satellite &amp; sentiment metrics before/after lockdown</h2>
+<p>Let’s compare averages before and after lockdown March 24, 2020.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="integration.html#cb37-1"></a>date_lockdown &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&quot;2020-03-24&quot;</span>)</span>
+<span id="cb37-2"><a href="integration.html#cb37-2"></a></span>
+<span id="cb37-3"><a href="integration.html#cb37-3"></a>metrics_ba &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(</span>
+<span id="cb37-4"><a href="integration.html#cb37-4"></a>  metrics <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-5"><a href="integration.html#cb37-5"></a><span class="st">    </span><span class="kw">filter</span>(date_ym <span class="op">&lt;=</span><span class="st"> </span>date_lockdown) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-6"><a href="integration.html#cb37-6"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb37-7"><a href="integration.html#cb37-7"></a>      <span class="dt">period =</span> <span class="st">&quot;before&quot;</span>),</span>
+<span id="cb37-8"><a href="integration.html#cb37-8"></a>  metrics <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-9"><a href="integration.html#cb37-9"></a><span class="st">    </span><span class="kw">filter</span>(date_ym <span class="op">&gt;</span><span class="st"> </span>date_lockdown) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-10"><a href="integration.html#cb37-10"></a><span class="st">    </span><span class="kw">mutate</span>(</span>
+<span id="cb37-11"><a href="integration.html#cb37-11"></a>      <span class="dt">period =</span> <span class="st">&quot;after&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-12"><a href="integration.html#cb37-12"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb37-13"><a href="integration.html#cb37-13"></a>    <span class="dt">period =</span> <span class="kw">factor</span>(period, <span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>), <span class="dt">ordered =</span> T))</span>
+<span id="cb37-14"><a href="integration.html#cb37-14"></a>  </span>
+<span id="cb37-15"><a href="integration.html#cb37-15"></a><span class="co"># View(metrics_ba)</span></span>
+<span id="cb37-16"><a href="integration.html#cb37-16"></a>metrics_ba <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-17"><a href="integration.html#cb37-17"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb37-18"><a href="integration.html#cb37-18"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> metric, <span class="dt">y =</span> value, <span class="dt">fill =</span> metric)) <span class="op">+</span></span>
+<span id="cb37-19"><a href="integration.html#cb37-19"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>period)</span></code></pre></div>
+<p><img src="MEDS-demo_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>The sentiments do not look significantly different before and after lockdown, especially relative to the dramatically different NO2 (blue).</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+
+<div id="refs" class="references">
+<div>
+<p>Gorelick, Noel, Matt Hancher, Mike Dixon, Simon Ilyushchenko, David Thau, and Rebecca Moore. 2017. “Google Earth Engine: Planetary-Scale Geospatial Analysis for Everyone.” <em>Remote Sensing of Environment</em>, Big Remotely Sensed Data: Tools, applications and experiences, 202 (December): 18–27. <a href="https://doi.org/10.1016/j.rse.2017.06.031">https://doi.org/10.1016/j.rse.2017.06.031</a>.</p>
+</div>
+<div>
+<p>Gurajala, Supraja, Suresh Dhaniyala, and Jeanna N. Matthews. 2019. “Understanding Public Response to Air Quality Using Tweet Analysis.” <em>Social Media + Society</em> 5 (3): 2056305119867656. <a href="https://doi.org/10.1177/2056305119867656">https://doi.org/10.1177/2056305119867656</a>.</p>
+</div>
+<div>
+<p>Sluban, Borut, Jasmina Smailović, Stefano Battiston, and Igor Mozetič. 2015. “Sentiment Leaning of Influential Communities in Social Networks.” <em>Compu Social Networls</em> 2 (1): 9. <a href="https://doi.org/10.1186/s40649-015-0016-5">https://doi.org/10.1186/s40649-015-0016-5</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/lesson.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sentiment.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ecoquants/r3-workshop/blob/master/03_integration.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MEDS-demo.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

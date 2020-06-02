@@ -37,38 +37,40 @@ Check out the Help > Cheatsheets > [RStudio IDE Cheat Sheet](https://github.com/
 
 ## Fork and Clone the Github Repository
 
-Please visit https://github.com/bbest/meds-demo, signed into Github. Then  into your own writable user space.
-
-Here is the Github repository of the source files for this demonstration:
+If you'd like to play with these materials directly and keep track of differences, please visit:
 
 https://github.com/bbest/meds-demo
 
-You are encouraged to [fork the repo in Github](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [clone it in RStudio](https://happygitwithr.com/rstudio-git-github.html#clone-the-new-github-repository-to-your-computer-via-rstudio).
+While signed into Github, [fork the repo](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) into your own writable user space so you can [clone it in RStudio](https://happygitwithr.com/rstudio-git-github.html#clone-the-new-github-repository-to-your-computer-via-rstudio).
 
-Then you can follow along in RStudio by evaluating the chunks of R code, while referencing the website:
+Then you can follow along in RStudio by evaluating the chunks of R code, while referencing this website:
 
 http://benbestphd.com/meds-demo
 
-
 ## Install R Packages
 
-Here's a bit of code to install packages that we'll use throughout the workshop. Please copy and paste this code into your console.
+Here's a bit of code to ensure you have all the necessary packages installed. Please copy and paste this code into your R Console.
 
 ```{r, message=F, warning=F}
 # use librarian to load libraries, installing if needed
 if (!require("librarian")) install.packages("librarian")
 library("librarian")
 
-# load packages
 pkgs <- c(
-  # general
-  "tidyverse","jsonlite","glue","here","units",
-
-  # satellite
+  # utility
+  "here","glue",
+  "readr","dplyr","tidyr","purrr","scales",
+  "lubridate","stringr","units",
+  # api
+  "jsonlite",
+  # plotting
+  "ggplot2","plotly",
+  # spatial
   "sf",
-  
-  # sentiment
-  "rtweet","tidytext")
+  # text
+  "rtweet","tidytext","textdata",
+  # tensorflow
+  "tensorflow","keras")
 shelf(pkgs)
 
 # report on versions of software & packages

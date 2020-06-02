@@ -7,9 +7,5 @@ https://benbestphd.com/meds-demo
 
 ## website
 
-The website was genarated using [bookdown](https://bookdown.org).
-
-
-
-
+The website was generated using [bookdown](https://bookdown.org).
 

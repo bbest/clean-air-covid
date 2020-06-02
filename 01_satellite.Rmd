@@ -8,13 +8,13 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 ### Question {-}
 
-- How have emissions related to air quality changed since COVID-19 lockdowns were put in place?
+How have emissions related to air quality changed since COVID-19 lockdowns were put in place?
 
 **Background**. Nitrogen dioxide (**NO~2~**) is produced from burning of fossil fuel, especialy from motor vehicles, and contributes to the formation of other air pollutants, including ozone, particulate mattter and acid rain.
 
 ### Study area: Delhi, India {-}
 
-- We'll use **Delhi, India** as our initial city study area. Prime Minister Modhi issued a nationwide lockdown on 24 March, 2020. 
+We'll use **Delhi, India** as our initial city study area. Prime Minister Modhi issued a nationwide lockdown on 24 March, 2020. 
 
 **News**:
 
@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 The student will learn how to:
 
-1. Browse Google Earth Engine's data catalogue
+1. Browse Google Earth Engine's data catalog
 1. Examine basic information about the dataset
 1. Map datasets in the Code Editor
 1. Upload assets, such as a polygon
@@ -49,10 +49,12 @@ The first step is to define our study area. I made a little R helper function `c
 1. Fetch the administrative boundary from the [Nominatim OpenStreetMap API](https://nominatim.org/release-docs/develop/api/Search/) given a city name.
 1. Extract the polygon information, convert to shapefile and zip for upload into GEE.
 
-```{r, eval=F}
+```{r, eval=T}
 source("functions.R")
 
-city2zip("Delhi, India")
+loc_name <- "delhi"
+
+city2zip("Delhi, India", loc_name)
 ```
 
 The function returns the paths to files generated. You will use this zip file to upload into GEE as an asset.
@@ -73,8 +75,8 @@ Please click on "Sentinel-5P NRTI NO2: Near Real-Time Nitrogen Dioxide" to get t
 
 1. How many years of data are available?
 1. How does this compare with the other "Offline" dataset?
-1. Which of the bands do we want to use that is closest to the surface?
 1. What are the units of the band "NO2_column_number_density"?
+1. What is the spatial resolution of this band?
 1. What is its maximum value?
 
 ### Answers {.solution} 
@@ -82,6 +84,7 @@ Please click on "Sentinel-5P NRTI NO2: Near Real-Time Nitrogen Dioxide" to get t
 1. 2018-07-10 - Present, so ~1.5 months shy of 2 years
 1. 2018-06-28 - Present, so only ~ 0.5 month longer
 1. mol/m^2^
+1. 3.5 x 7 km^2^
 1. 0.0096
 
 ## Launch Code Editor with dataset
@@ -192,15 +195,44 @@ Save and Run again. It should take a bit longer to process, since it's now extra
 
 ## Download CSV
 
-In the popped out window of the time series chart, download the comma-seperated value (CSV) text file by clicking the <span style="color: black;background-color: #F1F1F1;">Download CSV</span> button. I save my file into  `data/no2_gee_Delhi-India.csv` of this Github repository.
+In the popped out window of the time series chart, download the comma-seperated value (CSV) text file by clicking the <span style="color: black;background-color: #F1F1F1;">Download CSV</span> button. I save my file into  `data/no2_delhi-india_ee-chart.csv` of this Github repository.
+
+Notice in the downloaded CSV that all the values are 0, 0.001 or missing. Apparently the download functionality rounds values to the nearest 0.001. So to get the kind of precision we need let's multiply each image in the collection by 1000 (going from moles to micromoles of NO~2~ per m^2^) using the `map()` function, being sure to reapply the datetime stamp for the image:
+
+```js
+var collection = ee.ImageCollection('COPERNICUS/S5P/NRTI/L3_NO2')
+  .select('NO2_column_number_density')
+  .filterDate('2018-07-10', '2020-05-26')
+  .map(function(img){ 
+    return img.multiply(1000)
+    .set('system:time_start', img.get('system:time_start')) });
+
+var band_viz = {
+  min: 0,
+  max: 0.0002,
+  palette: ['black', 'blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
+  opacity: 0.5
+};
+
+Map.addLayer(collection.mean(), band_viz, 'S5P N02');
+Map.addLayer(city_ply, {color: 'black'}, 'Delhi, India');
+Map.centerObject(city_ply);
+
+print(ui.Chart.image.series(
+  collection,
+  city_ply,
+  ee.Reducer.mean()));
+```
+
+Hit Run and download the CSV again from the chart.
  
-## Conclusions {-}
-
-It is similarly creating an average raster for the entire time domain of this dataset in the Map pane. Try zooming out, realizing that is happening globally. Now that's big data! In a tiny amount of time, with minor effort.
-
 ## Your Turn {.challenge}
 
 - Pick another city and start from the top. Generate a polygon zip, upload as an asset and generate the time series.
+
+## Conclusions {-}
+
+It is similarly creating an average raster for the entire time domain of this dataset in the Map pane. Try zooming out, realizing that is happening globally. Now that's big data! In a tiny amount of time, with minor effort.
 
 ## Further Resources {-}
 
