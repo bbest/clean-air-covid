@@ -140,11 +140,11 @@ Save the file and Run. I am choosing to save this file as "no2" under the "meds-
 
 ## Add city polygon asset
 
-Use the Asset Manager (Assets tab in upper left) to now add your study area by Uploading a <span style="color: white;background-color: red;">NEW</span> Shape file. Drag `city_Delhi.India.zip` in your file system to the <span style="color: white;background-color: red;">SELECT</span> button. Click <span style="color: white;background-color: rgb(33, 150, 243);">UPLOAD</span> to start upload.
+Use the Asset Manager (Assets tab in upper left) to now add your study area by Uploading a <span style="color: white;background-color: red;">NEW</span> Shape file. Drag `city_delhi.zip` in your file system to the <span style="color: white;background-color: red;">SELECT</span> button. Click <span style="color: white;background-color: rgb(33, 150, 243);">UPLOAD</span> to start upload.
 
 Now click the Tasks tab (upper right) to see that this process is initiated, but not yet complete (spinny gear on right). It should complete within a minute. You might need to refresh your browser for the asset to appear.
 
-Hover over the newly added asset city_Delhi-India in your Assets pane and click on the blue right arrow to import it into your script.
+Hover over the newly added asset city_delhi in your Assets pane and click on the blue right arrow to import it into your script.
 
 For more on this topic, see [Managing Assets](https://developers.google.com/earth-engine/asset_manager).
 
@@ -195,7 +195,7 @@ Save and Run again. It should take a bit longer to process, since it's now extra
 
 ## Download CSV
 
-In the popped out window of the time series chart, download the comma-seperated value (CSV) text file by clicking the <span style="color: black;background-color: #F1F1F1;">Download CSV</span> button. I save my file into  `data/no2_delhi-india_ee-chart.csv` of this Github repository.
+In the popped out window of the time series chart, download the comma-seperated value (CSV) text file by clicking the <span style="color: black;background-color: #F1F1F1;">Download CSV</span> button. I save my file into  `data/no2_delhi_ee-chart.csv` of this Github repository.
 
 Notice in the downloaded CSV that all the values are 0, 0.001 or missing. Apparently the download functionality rounds values to the nearest 0.001. So to get the kind of precision we need let's multiply each image in the collection by 1000 (going from moles to micromoles of NO~2~ per m^2^) using the `map()` function, being sure to reapply the datetime stamp for the image:
 

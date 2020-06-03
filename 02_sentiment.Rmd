@@ -110,9 +110,9 @@ Note: Twitter searches are not case-sensitive.
 
 Let's get the spatial and temporal extents from our previous satellite analysis:
 
-- **Spatial**. Let's get the centroid from the city's polygon boundary (`data/city_Delhi-India.geojson`) and use the maximum radius (25 miles) for Twitter searches.
+- **Spatial**. Let's get the centroid from the city's polygon boundary (`data/city_delhi.geojson`) and use the maximum radius (25 miles) for Twitter searches.
 
-- **Temporal**. Let's get tweets for the same timespan as the downloaded CSV of NO~2~ satellite data (`data/no2_delhi-india_ee-chart.csv`).
+- **Temporal**. Let's get tweets for the same timespan as the downloaded CSV of NO~2~ satellite data (`data/no2_delhi_ee-chart.csv`).
 
 ```{r}
 library(sf)
