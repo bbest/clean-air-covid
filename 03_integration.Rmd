@@ -58,8 +58,6 @@ no2 <- metrics %>%
   filter(metric == "NO2") %>% 
   pull(no2)
 
-rescale(metrics$sentiment, range(no2))
-
 g <- metrics %>%
   ggplot(
     aes(x = date, y = sentiment, color = metric)) +
