@@ -26,26 +26,26 @@ sentiments_csv <- here(glue("data/sentiments_{loc_name}.csv"))
 metrics_csv    <- here(glue("data/metrics_{loc_name}.csv"))
 
 if (!file.exists(metrics_csv)){
+  
+  sentiments <- read_csv(sentiments_csv) %>% 
+    rename(date = ym_date) %>% 
+    mutate(
+      metric    = glue("{query_name}"),
+      sentiment = tf_score) %>% 
+    select(metric, date, sentiment)
+  
   satellite  <- read_csv(satellite_csv) %>% 
     transmute(
-      date    = mdy(`system:time_start`),
-      date_ym = floor_date(date, unit = "month"),
-      no2     = NO2_column_number_density) %>% 
-    filter(!is.na(no2)) %>% 
-    group_by(date_ym) %>% 
+      date = mdy(`system:time_start`) %>% 
+        floor_date(date, unit = "month"),
+      no2  = NO2_column_number_density) %>% 
+    group_by(date) %>% 
     summarize(
       no2 = mean(no2, na.rm=T)) %>% 
     mutate(
-      metric = "NO2",
-      value  = rescale(no2, to = c(-1, 1))) %>% 
-    select(metric, date_ym, value)
-  
-  sentiments <- read_csv(sentiments_csv) %>% 
-    rename(date_ym = ym_date) %>% 
-    mutate(
-      metric = glue("{query_name}"),
-      value  = rescale(tf_score, to = c(-1, 1))) %>% 
-    select(metric, date_ym, value)
+      metric    = "NO2",
+      sentiment = rescale(no2, to = range(sentiments$sentiment))) %>% 
+    select(metric, date, no2, sentiment)
   
   bind_rows(
     satellite,
@@ -54,10 +54,22 @@ if (!file.exists(metrics_csv)){
 }
 metrics <- read_csv(metrics_csv)
 
+no2 <- metrics %>% 
+  filter(metric == "NO2") %>% 
+  pull(no2)
+
+rescale(metrics$sentiment, range(no2))
+
 g <- metrics %>%
   ggplot(
-    aes(x = date_ym, y = value, color = metric)) +
-  geom_line()
+    aes(x = date, y = sentiment, color = metric)) +
+  geom_line() +
+  scale_y_continuous(
+    sec = sec_axis(
+      ~rescale(., range(no2)),
+      name = bquote(NO[2]~"(µmol/"~m^2~")"))) +
+  theme(legend.position="top")
+g
 ggplotly(g)
 ```
 
@@ -72,21 +84,21 @@ date_lockdown <- as.Date("2020-03-24")
 
 metrics_ba <- bind_rows(
   metrics %>% 
-    filter(date_ym <= date_lockdown) %>% 
+    filter(date <= date_lockdown) %>% 
     mutate(
       period = "before"),
   metrics %>% 
-    filter(date_ym > date_lockdown) %>% 
+    filter(date > date_lockdown) %>% 
     mutate(
       period = "after")) %>% 
   mutate(
     period = factor(period, c("before", "after"), ordered = T))
   
-# View(metrics_ba)
-metrics_ba %>% 
+g <- metrics_ba %>% 
   ggplot() +
-  geom_boxplot(aes(x = metric, y = value, fill = metric)) +
+  geom_boxplot(aes(x = metric, y = sentiment, fill = metric)) +
   facet_wrap(~period)
+ggplotly(g)
 ```
 
 The sentiments do not look significantly different before and after lockdown, especially relative to the dramatically different NO2 (blue).
